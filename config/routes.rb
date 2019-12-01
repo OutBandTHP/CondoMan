@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   get  '/admin',   to: 'main_pages#admin'
   get  '/about',   to: 'main_pages#about'
   resources        :projects
+  resources        :users
 end

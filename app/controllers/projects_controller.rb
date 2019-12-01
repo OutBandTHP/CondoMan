@@ -3,7 +3,8 @@ class ProjectsController < ApplicationController
     params.require(:project).permit(:name, :admin, :address, :email, :since)
   end
 
-  def new 
+  def new
+    @project = Project.new 
   end
   
   def create

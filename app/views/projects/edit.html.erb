@@ -1,0 +1,14 @@
+<% provide(:title, 'Project') %>
+
+<h2>
+  <% Edit Project #{@project.name}
+</h2>
+
+<div class='row'>
+  <div class='col-md-6 col-md-offset-3'>
+    <%= form_with(model: @project, local: true) do |f| %>
+      <%= render 'project' %>
+      <%= f.submit 'Update Project Info', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>
