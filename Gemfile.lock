@@ -314,7 +314,7 @@ DEPENDENCIES
   guard (= 2.13.0)
   guard-rspec
   jbuilder (~> 2.7)
-  jquery-rails
+  jquery-rails (~> 4.3)
   launchy
   listen (= 3.1.5)
   pg
