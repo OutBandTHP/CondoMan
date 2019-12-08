@@ -1,6 +1,6 @@
 Feature: Manage the various Projects
   
-  As a super-user I need to be able to set new projects and assign to each project a Project Admin.
+  As a Sys Admin I need to be able to set new projects and assign to each project a Project Admin.
   For each project, I need to define it's name, physical address & mail and email 
 
 Scenario: Add a project

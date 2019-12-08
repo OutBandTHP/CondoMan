@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  before_save { email.downcase! }
+  
   attr_accessor :remember_token
   
   def self.valid_user_regex
@@ -6,10 +8,8 @@ class User < ApplicationRecord
   end
   
   def User.user_types
-    {Super: 4, Admin: 3, Commmittee: 2, Tenant: 1}
+    {SysAdmin: 4, Admin: 3, Commmittee: 2, Tenant: 1}
   end
-  
-  before_save { email.downcase! }
   
   validates :name, presence: true
   validates :authority, presence: true
@@ -17,7 +17,7 @@ class User < ApplicationRecord
   validates :email, presence: true, format: { with: valid_user_regex },  
                     uniqueness: true, length: { maximum: 255 }
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -25,12 +25,28 @@ class User < ApplicationRecord
     BCrypt::Password.create(string, cost: cost)
   end
   
-  def is_tenant?
-    self.authority == User.user_types.fetch(:Tenant) 
+  def User.tenant
+    User.user_types.fetch(:Tenant) 
   end
   
-  def is_super?
-    self.authority == User.user_types.fetch(:Super) 
+  def is_tenant?
+    self.authority == User.tenant
+  end
+  
+  def User.sysadmin
+    User.user_types.fetch(:SysAdmin) 
+  end
+
+  def is_sysadmin?
+    self.authority == User.sysadmin
+  end
+  
+  def manages?(level)
+    if level == User.sysadmin
+      true
+    else
+      self.authority > level
+    end
   end
 
   def User.new_token
