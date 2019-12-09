@@ -1,7 +1,7 @@
 class User < ApplicationRecord
-  before_save { email.downcase! }
-  
   attr_accessor :remember_token
+  
+  before_save { email.downcase! }
   
   def self.valid_user_regex
       /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
