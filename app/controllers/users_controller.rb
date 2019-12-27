@@ -21,7 +21,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = @user = User.new(user_params)
+    @user = User.new(user_params)
+    @user.authority = User.tenant
     if @user.save
       log_in @user
       flash[:success] = "Welcome to CondoMan - you\'re Logged in as #{@user.name}"

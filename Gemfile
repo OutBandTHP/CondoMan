@@ -11,6 +11,8 @@ gem 'sass-rails',              '~> 5.1'
 gem 'webpacker',               '~> 4.0'
 gem 'turbolinks',              '~> 5.2'
 gem 'jbuilder',                '~> 2.9'
+gem 'nokogiri',                '~> 1.8'
+gem 'thor',                    '~> 0.20'
 gem 'bootsnap',                '~> 1.4', require: false
 
 group :development, :test do
