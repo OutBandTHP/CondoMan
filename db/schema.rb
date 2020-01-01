@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_02_085141) do
+ActiveRecord::Schema.define(version: 2019_12_29_134931) do
+
+  create_table "buildings", force: :cascade do |t|
+    t.text "address"
+    t.string "id_code"
+    t.integer "project_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_buildings_on_project_id"
+  end
 
   create_table "projects", force: :cascade do |t|
     t.string "name"
@@ -20,6 +29,19 @@ ActiveRecord::Schema.define(version: 2019_12_02_085141) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.date "since"
+    t.integer "no_buildings"
+    t.integer "no_units"
+  end
+
+  create_table "units", force: :cascade do |t|
+    t.integer "number"
+    t.integer "building"
+    t.integer "floor"
+    t.integer "project_id", null: false
+    t.date "since"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_units_on_project_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -33,4 +55,6 @@ ActiveRecord::Schema.define(version: 2019_12_02_085141) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "buildings", "projects"
+  add_foreign_key "units", "projects"
 end

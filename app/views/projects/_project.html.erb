@@ -4,7 +4,7 @@
   <%= f.label :name %>
   <%= f.text_field :name, class: 'form-control' %>
 
-  <%= f.label :admin %>
+  <%= f.label :admin, 'eMail of Admin' %>
   <%= f.email_field :admin, class: 'form-control' %>
 
   <%= f.label :email, 'eMail of Project' %>
@@ -12,6 +12,12 @@
 
   <%= f.label :address %>
   <%= f.text_field :address, class: 'form-control' %>
+
+  <%= f.label :no_buildings, 'No. of Buildings' %>
+  <%= f.text_field :no_buildings, class: 'form-control' %>
+
+  <%= f.label :no_units, 'No. of Units' %>
+  <%= f.text_field :no_units, class: 'form-control' %>
 
   <%= f.label :since, 'Start Activity Date' %>
   <%= f.date_field :since, class: 'form-control' %>

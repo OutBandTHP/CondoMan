@@ -21,13 +21,31 @@ Given /the following users were created:/ do |users_table|
 end
 
 When /^(?:|I )login as (.+) with password (.+)$/ do |email, password|
-  fill_in "Email", :with => email
+  fill_in "Email",    :with => email
   fill_in "Password", :with => password
   click_button("Log in")
 end
 
+And /^(?:|I )create the project (.+), managed by (.+) with (\d+) buildings and (\d+) units/ do |project, admin, buildings, units|
+  fill_in "Name",             :with => project
+  fill_in "eMail of Admin",   :with => admin
+  fill_in "eMail of Project", :with => "project@mail.com"
+  fill_in "Address",          :with => "Project Address"
+  fill_in "No. of Buildings", :with => buildings
+  fill_in "No. of Units",     :with => units
+  click_button("Save Changes")
+end
+
+Then /^(?:|I )can find (.+) by (.+) (.+)$/ do |object, key, value|
+  expect(eval ("#{object.singularize.capitalize}.find_by(#{key}: \"#{value}\").#{key}")).to match(value)
+end
+
 Then /^(?:|I )should (|not )see menu (.+)$/ do |see, menu_item|
   eval ("page.should" + (see == "not "?"_not " : " ") + "have_content(menu_item)")
+end
+
+Then /^(?:|I )should (|not )see (.+)$/ do |see, text|
+  eval ("page.should" + (see == "not "?"_not " : " ") + "have_content(text)")
 end
 
 When /^(?:|I )follow (.+)$/ do |button|
@@ -37,4 +55,8 @@ end
 Then /^(?:|I )should be on the (.+) page$/ do |page_name|
   regexp = /.*(#{page_name}).*/
   expect(page.body).to match(regexp)
+end
+
+Then /there are (\d+) (.+)$/ do |amount, object|
+  expect(eval ("#{object.singularize.capitalize}.count")).to match(amount)
 end

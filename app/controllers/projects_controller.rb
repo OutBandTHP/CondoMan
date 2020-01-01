@@ -10,6 +10,13 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     if @project.save
+      Range.new(1, @project.no_buildings).each do |num| 
+        Building.create(id_code: num, project_id: @project.id)
+      end
+      Range.new(1, @project.no_units).each do |num| 
+        Unit.create(number: num, since: @project.since, project_id: @project.id)
+      end
+      set_project @project
       flash[:success] = "#{@project.name} was successfully created."
       redirect_to root_path
     else
@@ -27,13 +34,14 @@ class ProjectsController < ApplicationController
     flash[:notice] = "#{@project.name} was successfully updated."
     redirect_to root_path
   end
-  
-  def destroy
-    
-  end
 
   private
     def project_params
-      params.require(:project).permit(:name, :admin, :address, :email, :since)
+      params.require(:project).permit(:name, :admin, :address, :email, :since, :no_buildings, :no_units)
     end
+    
+    def set_project(project)
+      session[:project_id] = project.id
+    end
+
 end

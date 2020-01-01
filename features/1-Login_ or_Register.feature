@@ -7,7 +7,7 @@ Background: users have been added to database
   Given the following users were created:
   | name            | email                | authority | password | password_confirmation |
   | System Admin    | g.matissh@gmail.com  |       5   | foobar   | foobar                |
-  | Projec Admin    | matissh@yahoo.com    |       4   | foobar   | foobar                |
+  | Project Admin   | matissh@yahoo.com    |       4   | foobar   | foobar                |
   | Committe member | Com.Mem@gmail.com    |       3   | foobar   | foobar                |
   | Unit Owner      | Unit.Owner@gmail.com |       2   | foobar   | foobar                |
   | Tennat          | Tenant@gmail.com     |       1   | foobar   | foobar                |
