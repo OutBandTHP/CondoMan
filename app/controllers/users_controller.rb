@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: :destroy
   
   def index
-    @users = User.paginate(page: params[:page], per_page: 10)
+    @users = User.where(activated: true).paginate(page: params[:page], per_page: 20)
   end
   
   def show
@@ -24,9 +24,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.authority = User.tenant
     if @user.save
-      log_in @user
-      flash[:success] = "Welcome to CondoMan - you\'re Logged in as #{@user.name}"
-      redirect_to root_path
+      @user.send_activation_email
+      flash[:info] = "Please check your email to activate your account."
+      redirect_to root_url
     else
       render 'new'
     end

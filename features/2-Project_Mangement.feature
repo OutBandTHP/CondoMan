@@ -23,8 +23,8 @@ Scenario Outline: Add a project
   And I choose menu Create new Project
   Then I should be on the Add New Project page
   And I create the project <project>, managed by <admin> with <buildings> buildings and <units> units
-  Then I should see <project> was successfully created
-  And I can find user by email <admin>
+  Then I can find user by email <admin>
+  And there is 1 project
   And there are <buildings> buildings
   And there are <units> units
 

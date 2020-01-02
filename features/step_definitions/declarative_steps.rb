@@ -44,10 +44,6 @@ Then /^(?:|I )should (|not )see menu (.+)$/ do |see, menu_item|
   eval ("page.should" + (see == "not "?"_not " : " ") + "have_content(menu_item)")
 end
 
-Then /^(?:|I )should (|not )see (.+)$/ do |see, text|
-  eval ("page.should" + (see == "not "?"_not " : " ") + "have_content(text)")
-end
-
 When /^(?:|I )follow (.+)$/ do |button|
   pending # Write code here that turns the phrase above into concrete actions
 end
@@ -57,6 +53,6 @@ Then /^(?:|I )should be on the (.+) page$/ do |page_name|
   expect(page.body).to match(regexp)
 end
 
-Then /there are (\d+) (.+)$/ do |amount, object|
+Then /there (are|is) (\d+) (.+)$/ do |ignore, amount, object|
   expect(eval ("#{object.singularize.capitalize}.count")).to match(amount)
 end
