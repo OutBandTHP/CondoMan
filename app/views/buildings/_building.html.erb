@@ -1,11 +1,9 @@
-<%= form_for(@building) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-
-  <%= f.label :id_code, 'Id of building' %>
-  <%= f.text_field :id_code, class: 'form-control' %>
-
-  <%= f.label :address %>
-  <%= f.text_field :address, class: 'form-control' %>
-  
-  <%= f.submit 'Save Changes', class: 'btn btn-primary' %>
-<% end %>
+<tr id="building-<%= building.id %>">
+  <td><span class="building_id"><%= building.id_code %></span></td>
+  <td>
+    <span class="address"><%= building.address %></span>
+  </td>
+  <td>
+    <span><%= link_to "Edit", edit_building_path(building.id) %></span>
+  </td>
+</tr>

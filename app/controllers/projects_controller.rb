@@ -40,12 +40,13 @@ class ProjectsController < ApplicationController
   
   def edit
     @project = Project.find params[:id]
+    store_location
   end
   
   def update
     @project = Project.find params[:id]
     @project.update_attributes!(project_params)
-    flash[:notice] = "#{@project.name} was successfully updated."
+    flash[:success] = "#{@project.name} was successfully updated."
     redirect_to root_path
   end
 
@@ -56,7 +57,6 @@ class ProjectsController < ApplicationController
     
     def set_project(project)
       session[:project_id] = project.id
-      puts "-----------------> Project is #{project.name}<----------------------"
     end
 
 end

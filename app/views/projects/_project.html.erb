@@ -12,12 +12,12 @@
 
   <%= f.label :address %>
   <%= f.text_field :address, class: 'form-control' %>
-
+  
   <%= f.label :no_buildings, 'No. of Buildings' %>
-  <%= f.text_field :no_buildings, class: 'form-control' %>
+  <%= f.text_field :no_buildings, class: 'form-control', disabled: (!local_assigns[:create]) %>
 
   <%= f.label :no_units, 'No. of Units' %>
-  <%= f.text_field :no_units, class: 'form-control' %>
+  <%= f.text_field :no_units, class: 'form-control', disabled: (!local_assigns[:create]) %>
 
   <%= f.label :since, 'Start Activity Date' %>
   <%= f.date_field :since, class: 'form-control' %>

@@ -3,12 +3,21 @@ class Unit < ApplicationRecord
   
   validates :number, presence: true
   validates :since, presence: true
-  validate :created_after_project
+  validate  :belongs_to_building
+  validate  :created_after_project
   
   private
-    def created_after_project
-      if self.since < self.project.since
-        errors.add(:since, "Can't be before project's Since date")
+  
+    def belongs_to_building
+      return if building == nil
+      unless self.project.buildings.find(building)
+        errors.add(:building, "This building does't belong to the project")
       end
+    end
+      
+    def created_after_project
+      if self.since < self.project.since 
+        errors.add(:since, "This unit can't be occupied before the project(#{self.project.since})")
+      end  
     end
 end

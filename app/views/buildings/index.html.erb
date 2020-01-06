@@ -1,16 +1,12 @@
-<% provide(:title, 'Project') %>
+<% provide(:title, 'Buildings') %>
+<div class="center-block">
+  <h1>Buildings<%= " of #{@project.name}" %></h1>
 
-<h2>
-  Project <%= "#{@project.name}" %>
-</h2>
+  <%= will_paginate %><br>
 
-<div class='row'>
-  <div class='col-md-6 col-md-offset-3'>
-    <%= render 'project' %>
-  </div>
   <div class="col-md-8">
     <h4>There are <%= @project.buildings.count %> buildings in this Project</h4>
-      <table>
+      <table class="table table-hover">
         <thead>
           <tr class="heading">
             <td>Building ID</td>
@@ -20,5 +16,5 @@
         </thead>
         <tbody>
           <%= render @buildings %>
-      </table>  </div>
-</div>  
+      </table>
+  </div>

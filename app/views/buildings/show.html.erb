@@ -1,11 +1,11 @@
 <% provide(:title, 'Building') %>
 
 <h2>
-  Project <%= "#{@project.name}" %>
+  Building <%= "Building #{@building.id_code} of #{@project.name}"  if project_set? %>
 </h2>
 
 <div class='row'>
   <div class='col-md-6 col-md-offset-3'>
-    <%= render 'building' %>
+    <%= render 'form_building' %>
   </div>
 </div>  

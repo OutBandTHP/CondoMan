@@ -51,6 +51,12 @@ h3 {
   color: white;
   font-weight: normal;
 }
+h4 {
+  font-size: 1.2em;
+  letter-spacing: -1px;
+  font-weight: normal;
+  color: $light-gray;
+}
 p {
   font-size: 1.2em;
   line-height: 1.7em;
@@ -68,22 +74,25 @@ footer {
   padding-top: 5px;
   border-top: 1px solid $gray-medium-light;
   color: $light-gray;
+  position: fixed; 
+  bottom: 10px;
   a {
     color: gray;
     &:hover {
       color: gray-darker;
     }
   }
-  small {
-    float: left;
-  }
   ul {
     float: right;
     list-style: none;
     li {
-      float: left;
-      margin-left: 15px;
+      float: right;
+      margin-left: 50px;
+      margin-right: 50px;
     }
+  }
+  small {
+    float: left;
   }
 }
 
@@ -174,7 +183,7 @@ aside {
 }
 
 /* Users index */
-.users {
+.lists {
   list-style: none;
   margin: 0;
   li {
@@ -182,4 +191,14 @@ aside {
     padding: 10px 0;
     border-bottom: 1px solid $gray-lighter;
   }
+}
+
+.left {
+  margin-top: 15px;
+  float: left;
+}
+
+.right {
+  margin-top: 15px;
+  float: right;
 }

@@ -24,6 +24,8 @@ class SessionsController < ApplicationController
   
   def destroy
     log_out if logged_in?
+    session[:project_id] = nil
     redirect_to root_url
+    store_location
   end
 end
