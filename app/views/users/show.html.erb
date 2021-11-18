@@ -4,10 +4,10 @@
       <h3>
           <%= gravatar_for @user %>
           <%= @user.name %>
-          <% if current_user.manages?(@user.authority) && !current_user?(@user) %>
+          <% if current_user.manages?(current_user_role(@user)) && !current_user?(@user) %>
             | <%= link_to 'delete', @user, method: :delete, data: { confirm: "Are you sure?" } %>
           <% end %>
-          <%= @user.email %>, <%= User.user_types.index(@user.authority) %>
+          <%= @user.email %> 
       </h3>
     </section>
   </aside>

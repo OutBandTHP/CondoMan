@@ -7,7 +7,6 @@ class Unit < ApplicationRecord
   validate  :created_after_project
   
   private
-  
     def belongs_to_building
       return if building == nil
       unless self.project.buildings.find(building)

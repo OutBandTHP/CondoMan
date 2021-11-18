@@ -6,9 +6,22 @@
      
   <%= f.label :email %>
   <%= f.email_field :email, class: 'form-control' %>
+  
+  <%= form_with(model: @role, local: true) do |r| %>
+    
+    <% if at_admin_level? %>
+      <%= r.label :level %>
+      <%= r.number_field :level, class: 'form-control' %>
 
-  <%= f.label :authority, 'User Type' %>      
-  <%= f.select :authority, User.user_types.to_a %>
+      <% if is_sysadmin? %>
+        <%= r.label :project %>
+        <%= r.number_field :project, class: 'form-control' %>
+      <% end %>
+    
+      <%= r.label :unit %>
+      <%= r.number_field :unit, class: 'form-control' %>
+    <% end %>
+  <% end %>    
         
   <%= f.label :password %>
   <%= f.password_field :password, class: 'form-control' %>

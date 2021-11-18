@@ -1,43 +1,12 @@
 class User < ApplicationRecord
   attr_accessor :remember_token, :activation_token, :reset_token
+  has_many      :roles
 
   before_create :create_activation_digest  
   before_save   :downcase_email
-  before_save   :default_user_type
   
   def User.valid_user_regex
       /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  end
-  
-  def User.user_types
-    {Sysadmin: 5, Admin: 4, Committee: 3, Owner: 2, Tenant: 1}
-  end
-
-  # Support 2 query methods of user_types:
-  #   'is_type?'      - verifies if the authority of a given User is of the specific type
-  #   'at_type_level' - verifies if the authority of a given User is above a given level  
-  def method_missing(calling, *params)
-    if /is_(.+)\?/ !~ calling
-      if /at_(.+)_level\?/ !~ calling
-        super
-      else
-        authority_level = $1.capitalize
-        self.authority >= User.user_types.fetch(:"#{authority_level}")
-      end
-    else
-      authority_level = $1.capitalize
-      return eval("self.authority == User.user_types.fetch(:#{authority_level})")
-    end   
-  end
-
-  # Support query methods that fetch the value of a given type
-  def User.method_missing(calling, *params)
-    authority_level = calling.capitalize.to_sym
-    if User.user_types[authority_level] != nil
-        User.user_types.fetch(:"#{authority_level}")
-    else
-      super
-    end
   end
    
   validates :email,    presence: true, format: { with: valid_user_regex },  
@@ -49,14 +18,6 @@ class User < ApplicationRecord
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
-  end
-  
-  def manages?(level)
-    if level == User.sysadmin
-      true
-    else
-      self.authority > level
-    end
   end
 
   def User.new_token
@@ -99,12 +60,20 @@ class User < ApplicationRecord
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
   end
+  
+  def manages?(level)
+    if level == Role.sysadmin
+      true
+    else
+      if defined?(@project)
+        return self.roles.find_by(project_id: @project.id) >= level
+      else
+        return false
+      end
+    end
+  end
     
   private
-    def default_user_type
-      self.authority ||= User.tenant
-    end
-    
     def downcase_email
       self.email = email.downcase
     end

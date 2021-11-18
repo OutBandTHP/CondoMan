@@ -1,17 +1,17 @@
-<% if current_user.at_admin_level? %>
+<% if at_admin_level? %>
   <li class='dropdown'>
     <a class='dropdown-toggle' data-toggle='dropdown' href='#'>Admin
     <span class='caret'></span></a>
     <ul class='dropdown-menu' role='menu'>
-      <% if current_user.is_sysadmin? %>
+      <% if is_sysadmin? %>
         <li><%= link_to 'Create new Project',  new_project_path  %></li>
       <% end %>
       <% if project_set? %>
-        <li><%= link_to 'Manage Project',        edit_project_path(@project.id) %></li>
+        <li><%= link_to 'Manage Project',      edit_project_path(@project.id) %></li>
       <% end %>
      <li class='divider'></li>
-     <li><%= link_to 'Add new User',      '#' %></li>
-      <li><%= link_to 'Manage Users',       '#' %></li>
+     <li><%= link_to 'Add new User',           new_user_path %></li>
+      <li><%= link_to 'Manage Users',          users_path %></li>
       <li class='divider'></li>
       <li><%= link_to 'Manage Service Calls', '#' %></li>
     </ul>

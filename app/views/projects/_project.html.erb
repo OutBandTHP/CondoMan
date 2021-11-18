@@ -11,7 +11,8 @@
   <%= f.email_field :email, class: 'form-control' %>
 
   <%= f.label :address %>
-  <%= f.text_field :address, class: 'form-control' %>
+  <%= f.text_area :address, rows: 3, cols: 40, class: 'form-control' %>
+        
   
   <%= f.label :no_buildings, 'No. of Buildings' %>
   <%= f.text_field :no_buildings, class: 'form-control', disabled: (!local_assigns[:create]) %>

@@ -4,6 +4,7 @@ class Project < ApplicationRecord
   
   has_many :buildings
   has_many :units
+  has_many :roles  
   
   validates :name,         presence: true, length: { maximum: 50 }
   validates :admin,        presence: true, format: { with: User.valid_user_regex }
@@ -12,4 +13,5 @@ class Project < ApplicationRecord
                            uniqueness: true
   validates :no_buildings, numericality: { greater_than: 0 }
   validates :no_units,     numericality: { greater_than: 0 }
+
 end

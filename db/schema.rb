@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_02_094940) do
+ActiveRecord::Schema.define(version: 2020_01_07_130835) do
 
   create_table "buildings", force: :cascade do |t|
     t.text "address"
@@ -31,6 +31,18 @@ ActiveRecord::Schema.define(version: 2020_01_02_094940) do
     t.date "since"
     t.integer "no_buildings"
     t.integer "no_units"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.integer "authority"
+    t.date "since"
+    t.integer "user_id", null: false
+    t.integer "project_id"
+    t.integer "unit"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_roles_on_project_id"
+    t.index ["user_id"], name: "index_roles_on_user_id"
   end
 
   create_table "units", force: :cascade do |t|
@@ -61,5 +73,7 @@ ActiveRecord::Schema.define(version: 2020_01_02_094940) do
   end
 
   add_foreign_key "buildings", "projects"
+  add_foreign_key "roles", "projects"
+  add_foreign_key "roles", "users"
   add_foreign_key "units", "projects"
 end
