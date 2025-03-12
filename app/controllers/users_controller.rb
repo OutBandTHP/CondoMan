@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   
   before_action :logged_in_user, only: [:edit, :destroy, :index, :show, :update]
   before_action :correct_user,   only: [:edit, :show, :update]
-  before_action :admin_user,     only: :destroy
+  before_action :check_admin,    only: :destroy
   
   def index
     @users = User.where(activated: true).paginate(page: params[:page], per_page: 10)
@@ -85,7 +85,7 @@ class UsersController < ApplicationController
       end
     end
     
-    def admin_user
-      redirect_to(root_url) if is_tenant?
+    def check_admin
+      redirect_to(root_url) if is_tenant? || is_owner?
     end    
 end

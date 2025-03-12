@@ -1,4 +1,7 @@
 class UnitsController < ApplicationController
+  include SessionsHelper
+
+  before_action :check_admin, only: [:edit, :update]
   
   def index
     @project = Project.find(session[:project_id])
@@ -28,4 +31,8 @@ class UnitsController < ApplicationController
     def unit_params
       params.require(:unit).permit(:building, :floor, :since)
     end
+    
+    def check_admin
+      redirect_to(root_url) if is_tenant? || is_owner?
+    end    
 end

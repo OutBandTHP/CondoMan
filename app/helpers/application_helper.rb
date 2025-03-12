@@ -13,7 +13,10 @@ module ApplicationHelper
   #   'is_role?'      - verifies if the authority of a given User is of the specific role
   #   'at_role_level' - verifies if the authority of a given User is above a given level  
   def method_missing(calling, *params)
-    if @current_user.roles.count > 0
+puts "DEBUG   (Application_helper-16)"
+puts "DEBUG   (Application_helper-16)   : #{calling}"
+puts "DEBUG   (Application_helper-16)"
+    if current_user && @current_user.roles.count > 0
       level = @current_user.roles.first.authority
     else
       level = nil

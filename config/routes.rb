@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources         :projects, only: [:index, :show, :new, :create, :edit, :update]
   resources         :select_project, only: [:edit]
   resources         :users
+  resources         :roles
   resources         :account_activations, only: [:edit]
   resources         :password_resets, only: [:new, :create, :edit, :update]
   resources         :buildings, only: [:index, :show, :edit, :update]
