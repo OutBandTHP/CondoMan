@@ -1,46 +1,51 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem 'rails',                   '~> 6.1.4'
-gem 'bcrypt'
-gem 'bootstrap-sass'
-gem 'will_paginate'
-gem 'bootstrap-will_paginate'
-gem 'puma'
-gem 'sass-rails'
-gem 'webpacker'
-gem 'turbolinks'
-gem 'jbuilder'
-gem 'nokogiri'
-gem 'thor'
-gem 'bootsnap',                require: false
+ruby '3.1.2'
+
+gem 'rails',                      '7.2.2'
+gem 'rails-i18n',                 '7.0.10'
+gem 'i18n',                       '1.14.7'
+gem 'i18n-js',                    '4.2.3'
+gem 'bcrypt',                     '3.1.20'
+gem 'will_paginate',              '4.0.1'
+gem 'bootstrap-will_paginate',    '1.0.0'
+gem 'bootstrap-sass',             '3.4.1'
+gem 'puma',                       '6.6.0'
+gem 'sass-rails',                 '6.0.0'
+gem 'webpacker',                  '5.4.4'
+gem 'turbolinks',                 '5.2.1'
+gem 'jbuilder',                   '2.13.0'
+gem 'rexml',                      '3.4.1'
+gem 'bootsnap',                   '1.18.4', require: false
 
 group :development, :test do
-  gem 'sqlite3'
-  gem 'byebug',                platforms: [:mri, :mingw, :x64_mingw]
-  gem 'database_cleaner'
-  gem 'launchy'
-  gem 'rspec-rails'
+  gem 'sqlite3',                  '2.6.0'
+  gem 'faker',                    '3.5.1'
+  gem 'win32console',             '1.3.2'
+  gem 'byebug',                   '11.1.3', platforms: [:mri, :mingw, :x64_mingw]
 end
 
 group :development do
-  gem 'web-console'
-  gem 'listen'
-  gem 'spring'
-  gem 'spring-watcher-listen'
+  gem 'web-console',              '4.2.1'
+  gem 'listen',                   '3.9.0'
+  gem 'spring',                   '4.3.0'
+  gem 'spring-watcher-listen',    '2.1.0'
 end
 
 group :test do
-  gem 'capybara' 
-  gem 'selenium-webdriver'
-  gem 'webdrivers'
-  gem 'cucumber-rails',        :require => false
-  gem 'guard'
-  gem 'guard-rspec'
+  gem 'capybara',                 '3.40.0'
+  gem 'selenium-webdriver',       '4.10.0'
+  gem 'webdrivers',               '5.3.1'
+  gem 'rails-controller-testing', '1.0.5'
+  gem 'minitest',                 '5.25.5'
+  gem 'minitest-reporters',       '1.7.1'
+  gem 'guard',                    '2.19.1'
+  gem 'guard-minitest',           '2.4.6'
 end
 
 group :production do
-  gem 'pg'
+  gem 'pg',                       '1.5.9', platforms: [:x64_mingw]
 end
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'tzinfo-data',                platforms: [:mingw, :mswin, :x64_mingw, :jruby]
