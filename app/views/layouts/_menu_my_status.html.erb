@@ -1,14 +1,12 @@
 <% if logged_in? %>
   <li class='dropdown'>
-    <a class='dropdown-toggle' data-toggle='dropdown' href='#'>My Status
+    <a class='dropdown-toggle' data-toggle='dropdown' href='#'>ניהול עצמי
     <span class='caret'></span></a>
     <ul class='dropdown-menu' role='menu'>
-      <li><%= link_to 'My Service Calls',    '#' %></li>
-      <li><%= link_to 'My Account Status',   '#' %></li>
+      <li><%= link_to 'מצב החשבון שלי',  '#' %></li>
+      <li><%= link_to 'הדפסת קבלות',    '#' %></li>
       <li class='divider'></li>
-      <li><%= link_to 'House Bylaws',        '#' %></li>
-      <li class='divider'></li>
-      <li><%= link_to 'Add additional User', '#' %></li>
+      <li><%= link_to 'ניהול הפרופיל שלי', edit_user_path(current_user)  %></li>
     </ul>
   </li>
 <% end %>

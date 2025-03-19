@@ -61,16 +61,16 @@ class User < ApplicationRecord
     reset_sent_at < 2.hours.ago
   end
   
-  def manages?(level)
-    if level == Role.sysadmin
-      true
-    else
-      if defined?(@project)
-        return self.roles.find_by(project_id: @project.id) >= level
+  def manages?(level, project)
+      if !project.nil?
+        if self.roles.find_by(project_id: project.id).nil?
+          return false
+        else          
+          return self.roles.find_by(project_id: project.id).authority > level
+        end
       else
-        return false
+        return false # return self.roles.order(authority: :desc).first.authority > level
       end
-    end
   end
     
   private

@@ -1,8 +1,8 @@
 <li>
   <%= gravatar_for user, size: 40 %>
   <%= link_to user.name, user %>
-  <% if current_user.manages?(current_user_role(user)) && !current_user?(user) %>
-    | <%= link_to 'delete', user, method: :delete, data: { confirm: "Are you sure?" } %>
+  <% if current_user.manages?(current_user_role(user), @project) && !current_user?(user) %>
+    | <%= link_to 'מחק משתמש', user, method: :delete, data: { confirm: "האם אתה בטוח?" } %>
   <% end %>
-  <p><%= user.email %></p>
+  <br><%= user.email %>
 </li>

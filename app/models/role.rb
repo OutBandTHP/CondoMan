@@ -13,6 +13,13 @@ class Role < ApplicationRecord
   validates :since, presence: true
   validate  :unit_belongs_to_project
   validate  :created_after_project
+  
+  def Role.text(lvl)
+    if lvl == nil
+      lvl = 1
+    end
+    Role.level.to_a.at(Role.level.length-lvl).at(0).to_s
+  end
 
   # Support query methods that fetch the value of a given type
   def Role.method_missing(calling, *params)

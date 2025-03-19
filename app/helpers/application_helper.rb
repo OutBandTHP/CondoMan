@@ -13,17 +13,21 @@ module ApplicationHelper
   #   'is_role?'      - verifies if the authority of a given User is of the specific role
   #   'at_role_level' - verifies if the authority of a given User is above a given level  
   def method_missing(calling, *params)
+    level = nil
     if @current_user.roles.count > 0
-      level = @current_user.roles.first.authority
-    else
-      level = nil
+      if project_set? && !@current_user.roles.find_by(project_id: @project.id).nil?
+        level = @current_user.roles.find_by(project_id: @project.id).authority
+      end
+    end
+    if @current_user.roles.exists?(authority: Role.level.length)
+      level = @current_user.roles.find_by(authority: Role.level.length).authority
     end
     if /is_(.+)\?/ !~ calling
       if /at_(.+)_level\?/ !~ calling
         super
       else
-        return false if !level
-        return true if (calling == :at_admin_level? and level == Role.sysadmin)
+        return false if !level                        # ar_role?
+        return true if (level == Role.sysadmin)
         if project_set?
           return @current_user.roles.find_by(project_id: @project.id).authority >= Role.level.fetch(:"#{$1.capitalize}")
         else
@@ -32,7 +36,7 @@ module ApplicationHelper
       end
     else                                              # is_role?
       return false if !level
-      return true if (calling == :is_sysadmin? and level == Role.sysadmin)
+      return true if (level == Role.sysadmin)
       if project_set?
         return @current_user.roles.find_by(project_id: @project.id).authority == Role.level.fetch(:"#{$1.capitalize}")
       else
@@ -60,10 +64,21 @@ module ApplicationHelper
     if user.roles.find_by(authority: Role.sysadmin)
       return Role.sysadmin
     end
-    if defined?(@project)
-      user.roles.find_by(project_id: @project.id).authoruty
+    if project_set? && !user.roles.find_by(project_id: @project.id).nil?
+      user.roles.find_by(project_id: @project.id).authority
     else
       Role.tenant
+    end
+  end
+  
+  def current_user_project(user)
+    if user.roles.find_by(authority: Role.sysadmin)
+      return nil
+    end
+    if project_set?
+      @project.id
+    else
+      nil
     end
   end
 

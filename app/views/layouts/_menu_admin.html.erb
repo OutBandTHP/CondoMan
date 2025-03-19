@@ -1,19 +1,27 @@
 <% if at_admin_level? %>
   <li class='dropdown'>
-    <a class='dropdown-toggle' data-toggle='dropdown' href='#'>Admin
+    <a class='dropdown-toggle' data-toggle='dropdown' href='#'>מנהלן
     <span class='caret'></span></a>
     <ul class='dropdown-menu' role='menu'>
       <% if is_sysadmin? %>
-        <li><%= link_to 'Create new Project',  new_project_path  %></li>
+         <li><%= link_to 'הקמת פרוייקט חדש',    new_project_path  %></li>
+         <li class='divider'></li>
+        <% if project_set? %>
+          <li><%= link_to 'ניהול תצורה',        '#' %></li>
+          <li><%= link_to 'הגדרת ספרי חשבונות',  '#' %></li>
+          <li><%= link_to 'הגדרת סוגי תנועות',    '#' %></li>
+          <li><%= link_to 'פריסת תנועות לספרים', '#' %></li>
+          <li class='divider'></li>
+          <li><%= link_to 'ניהול הפרוייקט',      edit_project_path(@project.id) %></li>
+          <li class='divider'></li>
+          <li><%= link_to 'בצע מהלך סוף-שנה',   '#' %></li>
+          <li class='divider'></li>
+          <li><%= link_to 'הוסף משתמש חדש',    new_user_path %></li>
+        <% end %>
       <% end %>
-      <% if project_set? %>
-        <li><%= link_to 'Manage Project',      edit_project_path(@project.id) %></li>
-      <% end %>
-     <li class='divider'></li>
-     <li><%= link_to 'Add new User',           new_user_path %></li>
-      <li><%= link_to 'Manage Users',          users_path %></li>
-      <li class='divider'></li>
-      <li><%= link_to 'Manage Service Calls', '#' %></li>
+        <li><%= link_to 'ניהול הודעות למשתמשים', '#' %></li>
+        <li class='divider'></li>
+      <li><%= link_to 'ניהול משתמשים',          users_path %></li>
     </ul>
   </li>
 <% end %>

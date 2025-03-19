@@ -1,9 +1,9 @@
 <header class='navbar navbar-fixed-top navbar-inverse'>
   <div class='container-fluid'>
     <div class='navbar-header'>
-      <div class='navbar-brand'>
-        <%= link_to 'CondoMan', root_path, id: 'logo' %>
-      </div>
+      <ul class='nav navbar-nav navbar-left'>
+        <%= render 'layouts/menu_login' %>
+      </ul>
       <button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#mainMenu'>
         <span class='icon-bar'></span>
         <span class='icon-bar'></span>
@@ -12,18 +12,20 @@
     </div>
     <div class='collapse navbar-collapse' id='mainMenu'>
       <ul class='nav navbar-nav' id='mainMenu'>
-        <li><%= link_to 'Home',   root_path  %></li>
-        <li><%= link_to 'Help',   help_path  %></li>
+        <li><%= link_to 'About',  about_path %></li>
         <% if logged_in? %>
-          <%= render 'layouts/menu_admin' %>
-          <%= render 'layouts/menu_maintenance' %>
-          <%= render 'layouts/menu_finance' %>
           <%= render 'layouts/menu_my_status' %>
+          <%= render 'layouts/menu_admin' %>
+          <%= render 'layouts/menu_batches' %>
+          <%= render 'layouts/menu_budget' %>
+          <%= render 'layouts/menu_expense' %>
+          <%= render 'layouts/menu_income' %>
+          <%= render 'layouts/menu_3rd_party' %>
         <% end %>
       </ul>
-      <ul class='nav navbar-nav navbar-right'>
-        <%= render 'layouts/menu_login' %>
-      </ul>
+      <div class='navbar-brand'>
+        <%= link_to 'ניהול חשבונות וועד', root_path, id: 'logo' %>
+      </div>
     </div>
   </div>
 </header>

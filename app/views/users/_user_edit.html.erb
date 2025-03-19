@@ -1,33 +1,17 @@
 <%= form_with(model: @user, local: true) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
     
-  <%= f.label :name %>
+  <%= f.label :שם  %>
   <%= f.text_field :name, class: 'form-control' %>
      
-  <%= f.label :email %>
+  <%= f.label :מייל %>
   <%= f.email_field :email, class: 'form-control' %>
-  
-  <%= form_with(model: @role, local: true) do |r| %>
-    
-    <% if at_admin_level? %>
-      <%= r.label :level %>
-      <%= r.number_field :level, class: 'form-control' %>
-
-      <% if is_sysadmin? %>
-        <%= r.label :project %>
-        <%= r.number_field :project, class: 'form-control' %>
-      <% end %>
-    
-      <%= r.label :unit %>
-      <%= r.number_field :unit, class: 'form-control' %>
-    <% end %>
-  <% end %>    
-        
-  <%= f.label :password %>
+     
+  <%= f.label :סיסמא %>
   <%= f.password_field :password, class: 'form-control' %>
 
-  <%= f.label :password_confirmation, 'Confirmation' %>
+  <%= f.label :password_confirmation, 'אישור סיסמא' %>
   <%= f.password_field :password_confirmation, class: 'form-control' %>
 
-  <%= f.submit yield(:button_text), class: 'btn btn-primary' %>
+  <%= f.submit 'בצע שינויים', class: 'btn btn-primary' %>
 <% end %>
