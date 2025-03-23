@@ -1,0 +1,17 @@
+<% provide(:title, @notification.id) %>
+
+<div class='row'>
+  <div class='col-md-6 col-md-offset-3'>
+    מספר הודעה:         <%= @notification.id %>
+    <% if @notification.project_id then%>
+       פרוייקט:       <%= @project.name %><br>
+    <% end if%>
+    <p><%= @notification.text_message %><br></p>
+    <div class="left">
+      החל מתאריך:    <%= @notification.valid_from %>
+    </div>
+    <div class="right">
+      עד תאריך:      <%= @notification.valid_to %><br>
+    </div>
+  </div>
+</div>  

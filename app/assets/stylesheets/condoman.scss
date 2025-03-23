@@ -64,8 +64,12 @@ p {
 
 /* header */
 #logo {
-  font-size: 1.5em;
+  font-size: 1.7em;
   color: white;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
 }
 
 /* footer */
@@ -92,7 +96,7 @@ footer {
     }
   }
   small {
-    float: left;
+    float: right;
   }
 }
 
@@ -124,6 +128,26 @@ input {
   width: auto;
   margin-left: 0;
 }
+/* tables */
+#table-wrapper {
+  position:relative;
+}
+#table-scroll {
+  height:150px;
+  overflow:auto;  
+  margin-top:20px;
+}
+#table-wrapper table {
+  width:100%;
+}
+#table-wrapper table thead th .text {
+  position:absolute;   
+  top:-20px;
+  z-index:2;
+  height:20px;
+  width:35%;
+}
+
 /* miscellaneous */
 .debug_dump {
   clear: both;
@@ -152,7 +176,7 @@ aside {
     }
     h1 {
       font-size: 1.4em;
-      text-align: left;
+      text-align: right;
       letter-spacing: -1px;
       margin-bottom: 3px;
       margin-top: 0px;

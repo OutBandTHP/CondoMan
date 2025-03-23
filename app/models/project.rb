@@ -4,7 +4,8 @@ class Project < ApplicationRecord
   
   has_many :buildings
   has_many :units
-  has_many :roles  
+  has_many :roles
+  has_many :notifications  
   
   validates :name,         presence: true, length: { maximum: 50 }
   validates :admin,        presence: true, format: { with: User.valid_user_regex }

@@ -2,7 +2,7 @@ class UnitsController < ApplicationController
   
   def index
     @project = Project.find(session[:project_id])
-    @units = @project.units.paginate(page: params[:page], per_page: 10)
+    @units = @project.units
     store_location
   end
 
@@ -16,8 +16,8 @@ class UnitsController < ApplicationController
 
   def update
     @unit = Unit.find(params[:id])
-    if @unit.update_attributes(unit_params)
-      flash[:success] = "Unit #{@unit.number} was successfully updated."
+    if @unit.update(unit_params)
+      flash[:success] = "דירה #{@unit.number} עודכנה בהצלחה"
       redirect_back_or root_path
     else
       render 'edit'
@@ -26,6 +26,6 @@ class UnitsController < ApplicationController
 
   private
     def unit_params
-      params.require(:unit).permit(:building, :floor, :since)
+      params.require(:unit).permit(:building, :floor, :area, :since)
     end
 end

@@ -81,5 +81,12 @@ module ApplicationHelper
       nil
     end
   end
-
+                            
+  def valid_notices
+    if project_set?
+      Notification.where('(project_id isnull OR project_id = ' + @project.id.to_s + ') AND valid_from <= "' + Time.zone.today.to_s + '" AND valid_to >= "' + Time.zone.today.to_s + '"')
+    else
+      Notification.where('project_id isnull AND valid_from <= "' + Time.zone.today.to_s + '" AND valid_to >= "' + Time.zone.today.to_s + '"')
+    end        
+  end
 end

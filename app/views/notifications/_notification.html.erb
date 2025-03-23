@@ -1,0 +1,15 @@
+<tr>
+  <% if notification.project_id.nil? %>
+    <td><%= link_to "#{notification.id}", edit_notification_path(notification) %></td>
+    <td><%= notification.text_message %></td>
+    <td><%= notification.valid_from %></td>
+    <td><%= notification.valid_to %></td>
+    <td>כולם</td>
+  <% else %>
+    <td><%= link_to "#{notification.id}", edit_notification_path(notification) %></td>
+    <td><%= notification.text_message %></td>
+    <td><%= notification.valid_from %></td>
+    <td><%= notification.valid_to %></td>
+    <td><%= @projects.find(notification.project_id).name %></td>
+  <% end %>
+</tr>

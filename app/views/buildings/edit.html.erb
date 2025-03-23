@@ -1,7 +1,7 @@
-<% provide(:title, 'Building') %>
+<% provide(:title, 'בניין') %>
 
 <h2>
-  Edit <%= "Building #{@building.id_code} of #{@project.name}"  if project_set? %>
+  <%= "בניין #{@building.id_code} בפרוייקט #{@project.name}"  if project_set? %>
 </h2>
 
 <div class='row'>

@@ -1,9 +1,7 @@
 <tr id="unit-<%= unit.id %>">
-  <td><%= unit.number %></td>
-  <td><%= Building.find(unit.building).id_code if unit.building != nil %></td>
+  <td><%= link_to "#{unit.number}", edit_unit_path(unit.id) %></td>
+  <td><%= unit.area %></td></td>
+  <td><%= Building.find(unit.building).id_code %></td>
   <td><%= unit.floor %></td>
   <td><%= unit.since %></td>
-  <td>
-    <span><%= link_to "Edit", edit_unit_path(unit.id) %></span>
-  </td>
 </tr>

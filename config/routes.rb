@@ -5,11 +5,12 @@ Rails.application.routes.draw do
   get               '/login',  to: 'sessions#new'
   post              '/login',  to: 'sessions#create'
   delete            '/logout', to: 'sessions#destroy'
-  resources         :projects, only: [:index, :show, :new, :create, :edit, :update]
-  resources         :select_project, only: [:edit]
+  resources         :projects,            only: [:index, :show, :create, :edit, :update, :new]
+  resources         :select_project,      only: [:edit]
   resources         :users
   resources         :account_activations, only: [:edit]
-  resources         :password_resets, only: [:new, :create, :edit, :update]
-  resources         :buildings, only: [:index, :show, :edit, :update]
-  resources         :units, only: [:index, :show, :edit, :update]
+  resources         :password_resets,     only: [:edit, :update, :new, :create]
+  resources         :buildings,           only: [:index, :show, :edit, :update]
+  resources         :units,               only: [:index, :show, :edit, :update]
+  resources         :notifications,       only: [:index, :show, :edit, :update, :new, :create]
 end

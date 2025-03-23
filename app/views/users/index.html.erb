@@ -1,10 +1,13 @@
-<% provide(:title, 'Users') %>
-<h1>רשימת משתמשים</h1>
+<% provide(:title, 'ניהול משתמשים') %>
+<h1>ניהול משתמשים</h1>
 
 <%= will_paginate %>
 
 <ul class="lists">
   <%= render @users %>
 </ul>
+<div class="center">
+  <%= link_to 'צור משתמש חדש', new_user_path, class: 'btn btn-primary' %>
+</div>
 
 <%= will_paginate %>

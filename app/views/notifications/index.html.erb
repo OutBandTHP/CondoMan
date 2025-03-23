@@ -1,0 +1,22 @@
+<% provide(:title, 'הודעות') %>
+<h1>ניהול הודעות למשתמשים</h1>
+
+<div id="table-wrapper">
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr class="heading">
+        <th style="text-align:right">מס</th>
+        <th style="width: 65%; text-align:right">הודעה</th>
+        <th style="text-align:right">מתאריך</th>
+        <th style="text-align:right">עד תאריך</th>
+        <th style="width: 15%; text-align:right">עבור פרוייקט</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @notifications %>
+    </tbody>
+  </table>
+</div>
+<div class="center">
+  <%= link_to 'צור הודעה חדשה', new_notification_path, class: 'btn btn-primary' %>
+</div>

@@ -2,7 +2,8 @@ class Unit < ApplicationRecord
   belongs_to :project
   
   validates :number, presence: true
-  validates :since, presence: true
+  validates :since,  presence: true
+  validates :area,   numericality: { greater_than: 0 }
   validate  :belongs_to_building
   validate  :created_after_project
   
@@ -10,13 +11,13 @@ class Unit < ApplicationRecord
     def belongs_to_building
       return if building == nil
       unless self.project.buildings.find(building)
-        errors.add(:building, "This building does't belong to the project")
+        errors.add(:building, "הבניין שנבחר אינו שייך לפרוייקט")
       end
     end
       
     def created_after_project
       if self.since < self.project.since 
-        errors.add(:since, "This unit can't be occupied before the project(#{self.project.since})")
+        errors.add(:since, "הדירה אינה יכולה להיות פעילה לפני מועד פעילות הפרוייקט(#{self.project.since})")
       end  
     end
 end

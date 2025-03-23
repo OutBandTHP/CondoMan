@@ -1,7 +1,7 @@
-<% provide(:title, 'Project') %>
+<% provide(:title, 'פרוייקט') %>
 
 <h2>
-  Project <%= "#{@project.name}" %>
+  <%= "#{@project.name}" %>
 </h2>
 
 <div class='row'>
@@ -9,13 +9,13 @@
     <%= render 'project' %>
   </div>
   <div class="col-md-8">
-    <h4>There are <%= @project.buildings.count %> buildings in this Project</h4>
-      <table>
-        <thead>
+    <h4>יש <%= @project.buildings.count %> בניינים בפרוייקט</h4>
+      <table class="table table-striped">
+        <thead class="thead-dark">
           <tr class="heading">
-            <td>Building ID</td>
-            <td>Address</td>
-            <td>Actions</td>
+            <td>פעולה</td>
+            <td>זיהוי בניין</td>
+            <td>כתובת</td>
           </tr>
         </thead>
         <tbody>

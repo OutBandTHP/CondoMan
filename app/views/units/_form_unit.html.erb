@@ -1,14 +1,17 @@
 <%= form_for(@unit) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-  <%= f.label :building %>
+  <%= f.label :building, 'בניין' %>
   <%= f.collection_select :building, @unit.project.buildings, :id , :id_code, class: 'form-control' %>
 
-  <%= f.label :floor %>
+  <%= f.label :floor, 'קומה' %>
   <%= f.number_field :floor, class: 'form-control' %>
 
-  <%= f.label :since, 'Start Activity Date' %>
+  <%= f.label :area, 'שטח' %>
+  <%= f.number_field :area, step: '0.1', class: 'form-control' %>
+
+  <%= f.label :since, 'החל מתאריך' %>
   <%= f.date_field :since, class: 'form-control' %>
   
-  <%= f.submit 'Save Changes', class: 'btn btn-primary' %>
+  <%= f.submit 'בצע', class: 'btn btn-primary' %>
 <% end %>

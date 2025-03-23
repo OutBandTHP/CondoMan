@@ -5,6 +5,8 @@ class ProjectsController < ApplicationController
   
   def show
     @project = Project.find(params[:id])
+    @buildings = @project.buildings
+    @unis = @project.units
   end
 
   def new
@@ -23,7 +25,7 @@ class ProjectsController < ApplicationController
           Unit.create(number: num, since: @project.since, project_id: @project.id)
         end
         set_project(@project) 
-        flash[:success] = "#{@project.name} was successfully created. " + message
+        flash[:success] = "'#{@project.name}' נוצר בהצלחה" + message
         redirect_to root_path
       else
         render 'new'
@@ -33,15 +35,17 @@ class ProjectsController < ApplicationController
   
   def edit
     @project = Project.find params[:id]
+    @buildings = @project.buildings
+    @unis = @project.units
     store_location
   end
   
   def update
     ActiveRecord::Base.transaction do
       @project = Project.find params[:id]
-      if @project.update_attributes(project_params)
+      if @project.update(project_params)
         message = define_admin_user
-        flash[:success] = "#{@project.name} was successfully updated. #{message}"
+        flash[:success] = "'#{@project.name}' עודכן בהצלחה #{message}"
         redirect_to root_path
       else
         render 'edit'
@@ -60,7 +64,7 @@ class ProjectsController < ApplicationController
         if admin_user.save
           admin_user.send_activation_email
         end
-        message = "#{admin_user.email} must activate its account (it is a new user) !!!"
+        message = "'#{admin_user.email}' חייב להפעיל את חשבון המייל שלו - זהו חשבון מייל חדש!!!"
       end
       create_user_role(@project, admin_user, Role.admin)
       return message

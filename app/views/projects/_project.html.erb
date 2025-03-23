@@ -1,27 +1,27 @@
 <%= form_for(@project) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-  <%= f.label :name %>
+  <%= f.label :name, 'שם' %>
   <%= f.text_field :name, class: 'form-control' %>
 
-  <%= f.label :admin, 'eMail of Admin' %>
+  <%= f.label :admin, 'מייל המנהלן' %>
   <%= f.email_field :admin, class: 'form-control' %>
 
-  <%= f.label :email, 'eMail of Project' %>
+  <%= f.label :email, 'מייל הפרוייקט' %>
   <%= f.email_field :email, class: 'form-control' %>
 
-  <%= f.label :address %>
+  <%= f.label :address, 'כתובת' %>
   <%= f.text_area :address, rows: 3, cols: 40, class: 'form-control' %>
         
   
-  <%= f.label :no_buildings, 'No. of Buildings' %>
+  <%= f.label :no_buildings, 'מס. הבניינים' %>
   <%= f.text_field :no_buildings, class: 'form-control', disabled: (!local_assigns[:create]) %>
 
-  <%= f.label :no_units, 'No. of Units' %>
+  <%= f.label :no_units, 'מס. הדירות' %>
   <%= f.text_field :no_units, class: 'form-control', disabled: (!local_assigns[:create]) %>
 
-  <%= f.label :since, 'Start Activity Date' %>
+  <%= f.label :since, 'תחילת פעילות' %>
   <%= f.date_field :since, class: 'form-control' %>
   
-  <%= f.submit 'Save Changes', class: 'btn btn-primary' %>
+  <%= f.submit 'בצע שינויים', class: 'btn btn-primary' %>
 <% end %>

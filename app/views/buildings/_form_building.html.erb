@@ -1,11 +1,11 @@
 <%= form_for(@building) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-  <%= f.label :id_code, 'Id of building' %>
+  <%= f.label :id_code, 'זיהוי הבניין' %>
   <%= f.text_field :id_code, class: 'form-control' %>
 
-  <%= f.label :address %>
+  <%= f.label :address, 'כתובת' %>
   <%= f.text_area :address, rows: 3, cols: 40, class: 'form-control' %>
   
-  <%= f.submit 'Save Changes', class: 'btn btn-primary' %>
+  <%= f.submit 'בצע', class: 'btn btn-primary' %>
 <% end %>

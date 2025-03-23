@@ -1,23 +1,24 @@
 <% provide(:title, 'Units') %>
 <div class="center-block">
-  <h1>Units<%= " of #{@project.name}" %></h1>
-
-  <%= will_paginate %><br>
-  
+  <h1>דירות בפרוייקט <%= "#{@project.name}" %></h1>
+ 
   <div class="col-md-8">
-    <h4>There are <%= @project.units.count %> units in this Project</h4>
-      <table class="table table-hover">
-        <thead>
+    <h4>יש <%= @project.units.count %> דירות בפרוייקט</h4>
+    <div id="table-wrapper">
+      <table class="table table-striped">
+        <thead class="thead-dark">
           <tr class="heading">
-            <td>Unit #</td>
-            <td>Building</td>
-            <td>Floor</td>
-            <td>Since</td>
-            <td>Actions</td>
+            <th style="text-align:right">דירה מספר</th>
+            <th style="text-align:right">שטח</th>
+            <th style="text-align:right">בניין</th>
+            <th style="text-align:right">קומה</th>
+            <th style="text-align:right">מתאריך</th>
           </tr>
         </thead>
         <tbody>
           <%= render @units %>
+        </tbody>
       </table>
+    </div>
   </div>
  </div>

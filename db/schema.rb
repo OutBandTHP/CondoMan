@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_03_19_130648) do
+ActiveRecord::Schema[7.2].define(version: 2025_03_23_070547) do
   create_table "buildings", force: :cascade do |t|
     t.text "address"
     t.string "id_code"
@@ -18,6 +18,16 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_19_130648) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_buildings_on_project_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.text "text_message"
+    t.date "valid_from"
+    t.date "valid_to"
+    t.integer "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_notifications_on_project_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -52,6 +62,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_19_130648) do
     t.date "since"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "area"
     t.index ["project_id"], name: "index_units_on_project_id"
   end
 
@@ -71,6 +82,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_19_130648) do
   end
 
   add_foreign_key "buildings", "projects"
+  add_foreign_key "notifications", "projects"
   add_foreign_key "roles", "projects"
   add_foreign_key "roles", "users"
   add_foreign_key "units", "projects"

@@ -1,9 +1,4 @@
 <tr id="building-<%= building.id %>">
-  <td><span class="building_id"><%= building.id_code %></span></td>
-  <td>
-    <span class="address"><%= building.address %></span>
-  </td>
-  <td>
-    <span><%= link_to "Edit", edit_building_path(building.id) %></span>
-  </td>
+  <td><%= link_to "#{building.id_code}", edit_building_path(building.id) %></td>
+  <td><span class="address"><%= building.address %></span></td>
 </tr>
