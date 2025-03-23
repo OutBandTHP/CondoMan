@@ -9,7 +9,7 @@
         <% if project_set? %>
           <li><%= link_to 'ניהול תצורה',        '#' %></li>
           <li><%= link_to 'הגדרת ספרי חשבונות',  '#' %></li>
-          <li><%= link_to 'הגדרת סוגי תנועות',    '#' %></li>
+          <li><%= link_to 'הגדרת סוגי תנועות',    trans_types_path %></li>
           <li><%= link_to 'פריסת תנועות לספרים', '#' %></li>
           <li class='divider'></li>
           <li><%= link_to 'ניהול הפרוייקט',      edit_project_path(@project.id) %></li>
@@ -18,7 +18,7 @@
           <li class='divider'></li>
         <% end %>
       <% end %>
-      <li><%= link_to 'ניהול הודעות למשתמשים',  notifications_path %></li>
+      <li><%= link_to 'ניהול הודעות למשתמשים',    notifications_path %></li>
       <li class='divider'></li>
       <li><%= link_to 'ניהול משתמשים',          users_path %></li>
     </ul>

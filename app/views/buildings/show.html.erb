@@ -1,11 +1,12 @@
 <% provide(:title, 'ביניינים') %>
 
 <h2>
-  Building <%= "בניין #{@building.id_code} של פרוייקט #{@project.name}"  if project_set? %>
+  <%= "בניין #{@building.id_code} של פרוייקט #{@project.name}"  if project_set? %>
 </h2>
 
 <div class='row'>
   <div class='col-md-6 col-md-offset-3'>
-    <%= render 'form_building' %>
+     זיהוי הבניין:<%= @building.id_code %><br>
+     כתובת: <%= @building.address %>
   </div>
 </div>  

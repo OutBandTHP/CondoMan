@@ -1,0 +1,21 @@
+<% provide(:title, 'סוגי תנועות') %>
+<h1>ניהול סוגי תנועות</h1>
+
+<div class="row justify-content-md-center">
+<div id="table-wrapper">
+  <table width="auto" class="table table-striped">
+    <thead class="thead-dark">
+      <tr class="heading">
+        <th style="width: 10%; text-align:right">זיהוי התנועה</th>
+        <th style="width: 90%; text-align:right">שם התנועה</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @trans_types %>
+    </tbody>
+  </table>
+</div>
+</div>
+<div class="center">
+  <%= link_to 'צור סוג תנועה חדש', new_trans_type_path, class: 'btn btn-primary' %>
+</div>

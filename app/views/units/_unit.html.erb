@@ -1,6 +1,6 @@
-<tr id="unit-<%= unit.id %>">
+<tr id="דירה-<%= unit.id %>">
   <td><%= link_to "#{unit.number}", edit_unit_path(unit.id) %></td>
-  <td><%= unit.area %></td></td>
+  <td><%= unit.area %></td>
   <td><%= Building.find(unit.building).id_code %></td>
   <td><%= unit.floor %></td>
   <td><%= unit.since %></td>

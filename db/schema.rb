@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_03_23_070547) do
+ActiveRecord::Schema[7.2].define(version: 2025_03_23_090833) do
   create_table "buildings", force: :cascade do |t|
     t.text "address"
     t.string "id_code"
@@ -52,6 +52,13 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_23_070547) do
     t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_roles_on_project_id"
     t.index ["user_id"], name: "index_roles_on_user_id"
+  end
+
+  create_table "trans_types", force: :cascade do |t|
+    t.integer "code", null: false
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "units", force: :cascade do |t|
