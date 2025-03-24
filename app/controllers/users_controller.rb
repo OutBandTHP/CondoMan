@@ -88,7 +88,7 @@ class UsersController < ApplicationController
     def logged_in_user
       unless logged_in?
         store_location
-        flash[:danger] = "Please log in."
+        flash[:danger] = "נא להכנס למערכת"
         redirect_to login_url
       end
     end
@@ -97,6 +97,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       if current_user?(@user) || current_user.manages?(current_user_role(@user), @project)
       else
+        puts "----> FLASH from correct_user"
         flash[:warning] = "אינך מוסמך לבצע פעולה זו"
         redirect_to(root_url)
       end

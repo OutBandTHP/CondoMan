@@ -9,7 +9,7 @@ class Role < ApplicationRecord
   end
   
   validates :authority, presence: true, inclusion: { in: 1..5,
-                                        message: "Must be one of #{Role.level}"}
+                                        message: "חייב להיות אחד מ: #{Role.level}"}
   validates :since, presence: true
   validate  :unit_belongs_to_project
   validate  :created_after_project
@@ -38,12 +38,12 @@ class Role < ApplicationRecord
 
     def unit_belongs_to_project
       return if admin_level
-      unless self.unit
-        errors.add(:unit, "Unit code must be provided")
+      unless self.unit_id
+        errors.add(:unit, "נא לציין מס. דירה")
         return
       end
-      unless self.project.units.find(unit)
-        errors.add(:unit, "This unit does't belong to this project")
+      unless self.project.units.find(unit_id)
+        errors.add(:unit, "הדירה שנבחרה אינה שייכת לפרוייקט")
       end
     end
     
@@ -54,7 +54,7 @@ class Role < ApplicationRecord
     def created_after_project
       return if !self.project_id
       if self.since && self.since < self.project.since 
-        errors.add(:since, "This role can't be set before the project(#{self.project.since})")
+        errors.add(:since, "תאריך התפקיד אינו יכול להיות מוקדם לתאריך הפרוייקט(#{self.project.since})")
       end  
     end
   

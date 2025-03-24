@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_03_23_090833) do
+ActiveRecord::Schema[7.2].define(version: 2025_03_24_102728) do
   create_table "buildings", force: :cascade do |t|
     t.text "address"
     t.string "id_code"
@@ -47,9 +47,9 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_23_090833) do
     t.date "since"
     t.integer "user_id", null: false
     t.integer "project_id"
-    t.integer "unit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "unit_id"
     t.index ["project_id"], name: "index_roles_on_project_id"
     t.index ["user_id"], name: "index_roles_on_user_id"
   end

@@ -64,12 +64,12 @@ class User < ApplicationRecord
   def manages?(level, project)
       if !project.nil?
         if self.roles.find_by(project_id: project.id).nil?
-          return false
+          return level == Role.Sysadmin
         else          
-          return self.roles.find_by(project_id: project.id).authority > level
+          return self.roles.find_by(project_id: project.id).authority >= level
         end
       else
-        return false # return self.roles.order(authority: :desc).first.authority > level
+        return false
       end
   end
     
