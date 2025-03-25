@@ -14,6 +14,9 @@ module ApplicationHelper
   #   'at_role_level' - verifies if the authority of a given User is above a given level  
   def method_missing(calling, *params)
     level = nil
+    if @current_user.nil?
+      super
+    end
     if @current_user.roles.count > 0
       if project_set? && !@current_user.roles.find_by(project_id: @project.id).nil?
         level = @current_user.roles.find_by(project_id: @project.id).authority

@@ -1,0 +1,24 @@
+<% provide(:title, 'Books') %>
+<div class="center-block">
+  <h1>ספרי חשבונות בפרוייקט <%= "#{@project.name}" %></h1>
+ 
+  <div class="col-md-8">
+    <div id="table-wrapper">
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr class="heading">
+            <th style="text-align:right">שם הספר</th>
+            <th style="text-align:right">סוג הספר</th>
+            <th style="text-align:right">שייך לקבוצה</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render @books %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+ </div>
+<div class="center">
+  <%= link_to 'צור ספר חדש', new_book_path, class: 'btn btn-primary' %>
+</div>

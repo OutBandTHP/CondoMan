@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_03_24_102728) do
+ActiveRecord::Schema[7.2].define(version: 2025_03_24_105229) do
+  create_table "books", force: :cascade do |t|
+    t.string "name"
+    t.string "kind"
+    t.integer "project_id"
+    t.integer "books_id"
+    t.integer "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["books_id"], name: "index_books_on_books_id"
+    t.index ["group_id"], name: "index_books_on_group_id"
+    t.index ["project_id"], name: "index_books_on_project_id"
+  end
+
   create_table "buildings", force: :cascade do |t|
     t.text "address"
     t.string "id_code"
@@ -88,6 +101,9 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_24_102728) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "books", "books", column: "books_id"
+  add_foreign_key "books", "books", column: "group_id"
+  add_foreign_key "books", "projects"
   add_foreign_key "buildings", "projects"
   add_foreign_key "notifications", "projects"
   add_foreign_key "roles", "projects"
