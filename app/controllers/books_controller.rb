@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :set_project
+
   def index
     @books = Book.where(project_id: @project.id)
     store_location

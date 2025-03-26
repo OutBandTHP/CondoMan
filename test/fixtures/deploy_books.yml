@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  project: one
+  trans_type: one
+  book: one
+  as: MyString
+  neg_book: MyString
+
+two:
+  project: two
+  trans_type: two
+  book: two
+  as: MyString
+  neg_book: MyString

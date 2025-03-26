@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_03_24_105229) do
+ActiveRecord::Schema[7.2].define(version: 2025_03_25_124105) do
   create_table "books", force: :cascade do |t|
     t.string "name"
     t.string "kind"
@@ -31,6 +31,19 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_24_105229) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_buildings_on_project_id"
+  end
+
+  create_table "deploy_books", force: :cascade do |t|
+    t.integer "project_id", null: false
+    t.integer "trans_type_id", null: false
+    t.integer "book_neg_id", null: false
+    t.integer "book_pos_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_neg_id"], name: "index_deploy_books_on_book_neg_id"
+    t.index ["book_pos_id"], name: "index_deploy_books_on_book_pos_id"
+    t.index ["project_id"], name: "index_deploy_books_on_project_id"
+    t.index ["trans_type_id"], name: "index_deploy_books_on_trans_type_id"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -105,6 +118,10 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_24_105229) do
   add_foreign_key "books", "books", column: "group_id"
   add_foreign_key "books", "projects"
   add_foreign_key "buildings", "projects"
+  add_foreign_key "deploy_books", "books", column: "book_neg_id"
+  add_foreign_key "deploy_books", "books", column: "book_pos_id"
+  add_foreign_key "deploy_books", "projects"
+  add_foreign_key "deploy_books", "trans_types"
   add_foreign_key "notifications", "projects"
   add_foreign_key "roles", "projects"
   add_foreign_key "roles", "users"

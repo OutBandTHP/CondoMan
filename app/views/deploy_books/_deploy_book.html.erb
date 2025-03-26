@@ -1,0 +1,6 @@
+<tr id="פריסה-<%= deploy_book.id %>">
+  <td><%= link_to "#{deploy_book.trans_type_id}", edit_deploy_book_path(deploy_book.id) %></td>
+  <td><%= TransType.find(deploy_book.trans_type_id).name %></td>
+  <td><%= Book.find_by(project_id: @project.id, id: deploy_book.book_neg_id).name %></td>
+  <td><%= Book.find_by(project_id: @project.id, id: deploy_book.book_pos_id).name %></td>
+</tr>

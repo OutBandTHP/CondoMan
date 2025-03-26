@@ -1,0 +1,109 @@
+he:
+          
+  navigation:
+    about:    "מי אנחנו"
+    account:  "נהול חשבון"
+    app_name: "מערכת ניהול בתים משותפים"
+    authםr:   "מטיס הורודישטיאנו"
+    by:       "ע\"י"
+    contact:  "צור קשר"
+    help:     "עזרה"
+    home:     "דף הבית"
+    login:    "לאזור אישי"
+    logout:   "התנתק"
+    news:     "חדשות"
+    profile:  "הצג חשבון"
+    pw_reset: "שחזור סיסמה"
+    settings: "נהול חשבון"
+    signup:   "הרשמה!"
+    users:    "נהול משתמשים"
+    
+  frame_pages:
+    about_html:   "זהו דף <strong>מי אנחנו</strong> אשר הינו חלק ממערכת מסכי MHT"
+    contact_html: "זהו דף <strong>צור קשר</strong> אשר הינו חלק ממערכת מסכי MHT"
+    help_html:    "זהו דף <strong>עזרה</strong> אשר הינו חלק ממערכת מסכי MHT"
+    home_html:    "זהו <strong>דף הבית</strong> של מערכת ניהול בתים משותפים"
+    news_html:    "זהו דף <strong>חדשות</strong> אשר הינו חלק ממערכת מסכי MHT"
+    
+  sessions:
+    admin:        "מנהלן"
+    change:       "עדכן"
+    col_email:    "מייל"
+    col_lang:     "שפה"
+    col_user:     "משתמש"
+    confirmation: "אשור סיסמה"
+    create_acct:  "הקם את המשתמש שלי"
+    delete:       "מחק"
+    do_login:     "יש להכנס למערכת"
+    forgot_pw:    "שכחתי סיסמא"
+    newuser:      "משתמש חדש?"
+    password:     "סיסמה"
+    remember:     "זכור אותי על מחשב זה"
+    save:         "שמור שינויים"
+    signup:       "הרשם"
+    submit:       "בצע"
+    update_pw:    "עדכן סיסמא"
+    update_user:  "עדכן משתמש"
+
+  number:
+    currency:
+      format:
+        unit:      "₪"
+        precision: 2
+        separator: "."
+        delimiter: ","
+        format:    "%n&nbsp%u"
+
+  activerecord:
+    models:
+      user:       "משתמשים"
+    attributes:
+      user:
+        name:     "שם מלא"
+        email:    "מייל"
+        language: "שפה"
+        password: "סיסמה"
+        
+    errors:
+      messages:
+        blank: "אינו יכול להיות ריק"
+        
+  errors:
+    error:         "שגיאות"
+    template:
+      body:        ":נמצאו טעויות בשדות הבאים"
+      header:
+        one:       " טעות אחת מנעה בצוע %{model}"
+        other:     "  מספר טעויות (%{count}) מנעו בצוע %{model} "
+    invalid_link:  "לינק ההפעלה אינו תקין"
+    invalid_pw:    "צירוף מייל וסיסמא לא מוכר"
+    mail_notfound: "מייל אינו מוכר"
+    no_empty:      "איו יכול להיות ריק"
+    reset_expired: "פג תוקף שינוי סיסמא"
+    translation:   "תרגום אינו זמין עבור %{lang}"
+    wronglang:     "לא ניתן לבחור בשפה: %{lang}"
+    wronglogin:    'מייל ו/או סיסמה שגויים'
+   
+  messages:
+    activated:     "החשבון הופעל!"
+    check_mail:    "חפש במיילים שלך מכתב עם הוראות מתאימות. "
+    email_sent:    "נשלח מייל עם הוראות מתאימות"
+    not_activated: "החשבון טרם הופעל. "
+    pw_reset:      "הסיסמא עודכנה."
+    r_u_sure:      "האם אתה בטוח?"
+    succ_del:      "בטול בוצע בהצלחה!"
+    succ_upd:      "עדכון בוצע בהצלחה!"
+    welcome:       "ברוך הבא אל %{name}!"
+    
+  user_mailer:
+    account_activation:
+      content:  "על מנת להפעיל את חשבונך, יש ללחוץ על הלינק המצורף:"
+      greeting: "שלום %{name},"
+      subject:  "הפעלת המשתמש"
+
+    password_reset:
+      content:  "על מנת לחדש את הסיסמא, יש ללחוץ על הלינק המצורף:"
+      greeting: "שלום %{name},"
+      message:  "הלינק יפקע בתוך שעתיים."
+      subject:  "חידוש סיסמה"
+      warning:  "במידה ואינך מעוניין בשינוי הסיסמא, יש להתעלם ממייל זה."

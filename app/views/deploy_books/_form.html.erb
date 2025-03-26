@@ -1,0 +1,14 @@
+<%= form_for(@deploy_book) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.label 'תנועה' %>
+  <%= f.select :trans_type_id, TransType.all.collect { |p| [ p.name, p.id ] } %>
+
+  <%= f.label 'חשבון חובה' %>
+  <%= f.select :book_neg_id, @books.collect { |p| [ p.name, p.id ] } %>
+
+  <%= f.label 'חשבון זכות' %>
+  <%= f.select :book_pos_id, @books.collect { |p| [ p.name, p.id ] } %>
+  
+  <%= f.submit 'בצע', class: 'btn btn-primary' %>
+<% end %>

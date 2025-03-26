@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources         :buildings,           only: [:index, :show, :edit, :update]
   resources         :units,               only: [:index, :show, :edit, :update]
   resources         :notifications,       only: [:index, :show, :edit, :update, :new, :create]
-  resources         :trans_types,         only: [:index, :show, :edit, :update, :new, :create]
+  resources         :trans_types,         only: [:index,        :edit, :update, :new, :create]
   resources         :books,               only: [:index,        :edit, :update, :new, :create]
+  resources         :deploy_books,        only: [:index,        :edit, :update, :new, :create]
 end

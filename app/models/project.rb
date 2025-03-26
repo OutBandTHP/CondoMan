@@ -4,8 +4,9 @@ class Project < ApplicationRecord
   
   has_many :buildings
   has_many :units
-  has_many :roles
   has_many :notifications  
+  has_many :roles
+  has_many :users,         through: :roles
   
   validates :name,         presence: true, length: { maximum: 50 }, 
                            uniqueness: true
