@@ -66,10 +66,10 @@ class ProjectsController < ApplicationController
         end
         message = "'#{admin_user.email}' חייב להפעיל את חשבון המייל שלו - זהו חשבון מייל חדש!!!"
       end
-      create_user_role(@project, admin_user, Role.admin)
+#      create_user_role(@project, admin_user, Role.admin)
       return message
     end
-
+    
     def project_params
       params.require(:project).permit(:name, :admin, :address, :email, :since, :no_buildings, :no_units)
     end

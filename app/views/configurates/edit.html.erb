@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+  <%= form_with(model: @project, url: configurate_path(params[:id]),
+              local: true) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      
+      <h2>אפיון פרוייקט <%= @configurate.name %></h2>
+    
+      <%= f.label :current_month, 'חודש נוכחי' %>
+      <%= f.date_field :current_month, class: 'form-control' %>
+    
+      <%= f.label :total_area, 'שטח כולל' %>
+      <%= f.number_field :total_area, step: '0.1', class: 'form-control' %>
+    
+      <%= f.label :gl_tenants, 'ספר GL - דיירים' %>
+      <%= f.number_field :gl_tenants, class: 'form-control' %>
+    
+      <%= f.label :gl_suppliers, 'ספר GL - ספקים' %>
+      <%= f.number_field :gl_suppliers, class: 'form-control' %>
+    
+      <%= f.label :gl_expenses, 'ספר GL - חשבון הוצאות כללי' %>
+      <%= f.number_field :gl_expenses, class: 'form-control' %>
+    
+      <%= f.label :gl_income, 'ספר GL - חשבון הכנסות כללי' %>
+      <%= f.number_field :gl_income, class: 'form-control' %>
+    
+      <%= f.label :gl_budget, 'ספר GL - תקציב' %>
+      <%= f.number_field :gl_budget, class: 'form-control' %>
+    
+      <%= f.label :tx_monthly, 'תנועות  חיוב חודשי' %>
+      <%= f.text_field :tx_monthly, class: 'form-control' %>
+    
+      <%= f.label :tx_expense, 'תנועות הוצאה' %>
+      <%= f.text_field :tx_monthly, class: 'form-control' %>
+    
+      <%= f.label :tx_income, 'תנועות הכנסה' %>
+      <%= f.text_field :tx_monthly, class: 'form-control' %>
+    
+      <%= f.label :tx_support, 'תנועות עזר' %>
+      <%= f.text_field :tx_monthly, class: 'form-control' %>
+    
+      <%= f.label :gr_cash_flow, 'קבוצת ספרים לצפי תזרים מזומנים' %>
+      <%= f.text_field :tx_monthly, class: 'form-control' %>
+    
+      <%= f.label :gr_pos_side, 'קבוצות ספרים בצד זכות' %>
+      <%= f.text_field :gr_pos_side, class: 'form-control' %>
+    
+      <%= f.label :gr_neg_side, 'קבוצות ספרים בצד חובה' %>
+      <%= f.text_field :tx_monthly, class: 'form-control' %>
+    
+      <%= f.label :gr_open_balance, 'קבוצות ספרים ליתרות פתיחה' %>
+      <%= f.text_field :gr_open_balance, class: 'form-control' %>
+    
+      <%= f.label :gr_for_balance, 'קבוצות ספרים למאזן' %>
+      <%= f.text_field :gr_for_balance, class: 'form-control' %>
+    
+      <%= f.label :gr_for_flow, 'קבוצות ספרים לתזרים' %>
+      <%= f.text_field :gr_for_flow, class: 'form-control' %>
+    
+      <%= f.submit 'בצע שינויים', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

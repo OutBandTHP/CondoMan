@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_03_25_124105) do
+ActiveRecord::Schema[7.2].define(version: 2025_03_26_104008) do
   create_table "books", force: :cascade do |t|
     t.string "name"
     t.string "kind"
@@ -66,6 +66,23 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_25_124105) do
     t.date "since"
     t.integer "no_buildings"
     t.integer "no_units"
+    t.date "current_month"
+    t.decimal "total_area"
+    t.integer "gl_tenants"
+    t.integer "gl_suppliers"
+    t.integer "gl_expenses"
+    t.integer "gl_income"
+    t.integer "gl_budget"
+    t.string "tx_monthly"
+    t.string "tx_expense"
+    t.string "tx_income"
+    t.string "tx_support"
+    t.string "gr_cash_flow"
+    t.string "gr_pos_side"
+    t.string "gr_neg_side"
+    t.string "gr_open_balance"
+    t.string "gr_for_balance"
+    t.string "gr_for_flow"
   end
 
   create_table "roles", force: :cascade do |t|

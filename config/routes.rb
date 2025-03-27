@@ -6,14 +6,15 @@ Rails.application.routes.draw do
   post              '/login',  to: 'sessions#create'
   delete            '/logout', to: 'sessions#destroy'
   resources         :projects,            only: [:index, :show, :create, :edit, :update, :new]
+  resources         :configurates,        only: [:edit,  :update]
   resources         :select_project,      only: [:edit]
   resources         :users
   resources         :account_activations, only: [:edit]
-  resources         :password_resets,     only: [:edit, :update, :new, :create]
-  resources         :buildings,           only: [:index, :show, :edit, :update]
-  resources         :units,               only: [:index, :show, :edit, :update]
-  resources         :notifications,       only: [:index, :show, :edit, :update, :new, :create]
-  resources         :trans_types,         only: [:index,        :edit, :update, :new, :create]
-  resources         :books,               only: [:index,        :edit, :update, :new, :create]
-  resources         :deploy_books,        only: [:index,        :edit, :update, :new, :create]
+  resources         :password_resets,     only: [:edit, :update, :new,  :create]
+  resources         :buildings,           only: [:index, :show,  :edit, :update]
+  resources         :units,               only: [:index, :show,  :edit, :update]
+  resources         :notifications,       only: [:index, :show,  :edit, :update, :new, :create]
+  resources         :trans_types,         only: [:index,         :edit, :update, :new, :create]
+  resources         :books,               only: [:index,         :edit, :update, :new, :create]
+  resources         :deploy_books,        only: [:index,         :edit, :update, :new, :create]
 end

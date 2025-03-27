@@ -24,6 +24,8 @@ group :development, :test do
   gem 'faker',                    '3.5.1'
   gem 'win32console',             '1.3.2'
   gem 'byebug',                   '11.1.3', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'debug',                    '1.10.0', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails',              '7.1.1'
 end
 
 group :development do
