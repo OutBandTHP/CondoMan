@@ -1,5 +1,6 @@
 <tr id="ספר-<%= book.id %>">
-  <td><%= link_to "#{book.name}", edit_book_path(book.id) %></td>
+  <td><%= link_to "#{book.code}", edit_book_path(book.id) %></td>
+  <td><%= book.name %></td>
   <td><%= Book.group.invert[book.kind] %></td>
   <td><% if !book.group_id.nil? %>
     <%= Book.find(book.group_id).name  %>

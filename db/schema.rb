@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_03_26_104008) do
+ActiveRecord::Schema[7.2].define(version: 2025_03_30_133818) do
   create_table "books", force: :cascade do |t|
     t.string "name"
     t.string "kind"
@@ -19,8 +19,10 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_26_104008) do
     t.integer "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "code"
     t.index ["books_id"], name: "index_books_on_books_id"
     t.index ["group_id"], name: "index_books_on_group_id"
+    t.index ["project_id", "code"], name: "index_books_on_project_id_and_code", unique: true
     t.index ["project_id"], name: "index_books_on_project_id"
   end
 

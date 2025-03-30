@@ -25,11 +25,13 @@ class BooksController < ApplicationController
     @groups = Book.where(project_id: @project.id)
     @book = Book.new
     @book.project_id = @project.id
+    @book.code = Book.where(project_id: @project.id).maximum(:code)+1
   end
 
   def create
     @book = Book.new(book_params)
     @book.project_id = @project.id
+    @book.code = Book.where(project_id: @project.id).maximum(:code)+1
     if @book.save
       flash[:success] = "הספר #{@book.name} נוצר בהצלחה"
       redirect_back_or root_path
@@ -42,7 +44,7 @@ class BooksController < ApplicationController
   private
 
     def book_params
-      params.require(:book).permit(:name, :kind, :group_id, :project_id)
+      params.require(:book).permit(:name, :kind, :group_id, :project_id, :code)
     end
     
     def set_project
