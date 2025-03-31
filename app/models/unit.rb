@@ -4,7 +4,7 @@ class Unit < ApplicationRecord
   
   validates :number, presence: true
   validates :since,  presence: true
-  validates :area,   numericality: { greater_than: 0 }
+  validates :area,   presence: false,   numericality: { greater_than: 0 }
   validate  :belongs_to_building
   validate  :created_after_project
   

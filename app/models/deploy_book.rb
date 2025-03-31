@@ -1,7 +1,7 @@
 class DeployBook < ApplicationRecord
   belongs_to :project
   belongs_to :trans_type
-#  belongs_to :book,         class_name: 'Book'            # _neg
+#  belongs_to :book_neg,         class_name: 'Book'
 #  belongs_to :book_pos        should have worked?
 
   validates :trans_type_id, presence: true

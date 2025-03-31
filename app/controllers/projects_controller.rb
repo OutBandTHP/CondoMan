@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @buildings = @project.buildings
-    @unis = @project.units
+    @units = @project.units
   end
 
   def new
@@ -19,10 +19,13 @@ class ProjectsController < ApplicationController
       if @project.save
         message = define_admin_user
         Range.new(1, @project.no_buildings).each do |num| 
-          Building.create(id_code: num, project_id: @project.id)
+          @nbuild = Building.create(id_code: num, project_id: @project.id)
         end
         Range.new(1, @project.no_units).each do |num| 
-          Unit.create(number: num, since: @project.since, project_id: @project.id)
+          @n_unit = Unit.create(number: num, since: @project.since, project_id: @project.id, building: @nbuild.id, area: 50)
+          @n_user = User.create(name: "בעלים ליחידה-#{num.to_s}", email: "user_u#{num}_p#{@project.id}@gmail.com", 
+                               password: Default_Password, password_confirmation: Default_Password)
+          @n_role = Role.create(authority: Role.Owner, project_id: @project.id, unit_id: @n_unit.id, user_id: @n_user.id, since: @project.since)
         end
         set_project(@project) 
         flash[:success] = "'#{@project.name}' נוצר בהצלחה" + message
