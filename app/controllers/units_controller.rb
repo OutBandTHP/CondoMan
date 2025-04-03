@@ -1,8 +1,10 @@
 class UnitsController < ApplicationController
-  
+  before_action :logged_in_user
+    
   def index
     @project = Project.find(session[:project_id])
     @units = @project.units
+    @roles = @project.roles
     store_location
   end
 

@@ -2,6 +2,7 @@ class Project < ApplicationRecord
   before_save { admin.downcase! }
   before_save { email.downcase! }
   
+  has_many :years
   has_many :buildings
   has_many :units
   has_many :notifications  

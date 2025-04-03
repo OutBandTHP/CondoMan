@@ -1,13 +1,22 @@
 <% provide(:title, 'ניהול משתמשים') %>
 <h1>ניהול משתמשים</h1>
-
-<%= will_paginate %>
-
-<ul class="lists">
-  <%= render @users %>
-</ul>
-<div class="center">
-  <%= link_to 'צור משתמש חדש', new_user_path, class: 'btn btn-primary' %>
-</div>
-
-<%= will_paginate %>
+<div class="center-block">
+ 
+  <div class="col-md-8">
+    <div id="table-wrapper">
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr class="heading">
+            <th style="text-align:right">משתמש</th>
+            <th style="text-align:right">שם משתמש</th>
+            <th style="text-align:right">פעולה</th>
+            <th style="text-align:right">מייל</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render @users %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+ </div>

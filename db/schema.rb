@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_03_30_133818) do
+ActiveRecord::Schema[7.2].define(version: 2025_04_03_092356) do
   create_table "books", force: :cascade do |t|
     t.string "name"
     t.string "kind"
@@ -133,6 +133,16 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_30_133818) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  create_table "years", force: :cascade do |t|
+    t.integer "project_id", null: false
+    t.integer "finyear"
+    t.decimal "ppm"
+    t.boolean "closed", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_years_on_project_id"
+  end
+
   add_foreign_key "books", "books", column: "books_id"
   add_foreign_key "books", "books", column: "group_id"
   add_foreign_key "books", "projects"
@@ -145,4 +155,5 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_30_133818) do
   add_foreign_key "roles", "projects"
   add_foreign_key "roles", "users"
   add_foreign_key "units", "projects"
+  add_foreign_key "years", "projects"
 end

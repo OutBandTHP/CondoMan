@@ -132,11 +132,12 @@ input {
 /* tables */
 #table-wrapper {
   position :relative;
+  height: 480px;
 }
 #table-scroll {
   height:150px;
-  overflow:auto;  
   margin-top:20px;
+  overflow:scroll;
 }
 #table-wrapper table {
   width:100%;

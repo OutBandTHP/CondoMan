@@ -39,6 +39,14 @@ module SessionsHelper
   def logged_in?
     !current_user.nil?
   end
+    
+  def logged_in_user
+    unless logged_in?
+      store_location
+      flash[:danger] = "נא להכנס למערכת"
+      redirect_to login_url
+    end
+  end
 
   def forget(user)
     user.forget

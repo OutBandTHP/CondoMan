@@ -39,4 +39,21 @@
         <% end %>
       </ul>
     </li>
+    <li class='dropdown'>
+      <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+        <% if year_set? %>
+          <%= @year.finyear %>
+        <% else %>
+          <%= "לא נבחרה שנה" %>
+        <% end %>
+        <span class='caret'></span>
+      </a>
+      <ul class='dropdown-menu' role='menu'>
+        <% if project_set? %> 
+           <% @project.years.each do |yr| %>
+              <li><%= link_to yr.finyear, edit_select_year_path(yr.id)  %></li>
+           <% end %>
+        <% end %>
+      </ul>
+    </li>
 <% end %>

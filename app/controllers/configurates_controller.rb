@@ -1,6 +1,7 @@
 class ConfiguratesController < ApplicationController
   include ApplicationHelper
 
+  before_action :logged_in_user
   before_action :project_set?
 
   def edit

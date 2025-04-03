@@ -1,5 +1,6 @@
 class BuildingsController < ApplicationController
-  
+  before_action :logged_in_user
+   
   def index
     @project = Project.find(session[:project_id])
     @buildings = @project.buildings

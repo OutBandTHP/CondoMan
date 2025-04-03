@@ -4,4 +4,8 @@
   <td><%= Building.find(unit.building).id_code %></td>
   <td><%= unit.floor %></td>
   <td><%= unit.since %></td>
+  <td><%= User.find(@roles.find_by(unit_id: unit.id, authority: [2, 3, 4]).user_id).name %></td>
+  <td><% if !@roles.find_by(unit_id: unit.id, authority: 1).nil? %>
+        <%= User.find(@roles.find_by(unit_id: unit.id, authority: 1).user_id).name %>
+      <% end %></td>
 </tr>

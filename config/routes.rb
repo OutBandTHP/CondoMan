@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources         :projects,            only: [:index, :show, :create, :edit, :update, :new]
   resources         :configurates,        only: [:edit,  :update]
   resources         :select_project,      only: [:edit]
+  resources         :select_year,         only: [:edit]
   resources         :users
   resources         :account_activations, only: [:edit]
   resources         :password_resets,     only: [:edit, :update, :new,  :create]
@@ -17,4 +18,10 @@ Rails.application.routes.draw do
   resources         :trans_types,         only: [:index,         :edit, :update, :new, :create]
   resources         :books,               only: [:index,         :edit, :update, :new, :create]
   resources         :deploy_books,        only: [:index,         :edit, :update, :new, :create]
+  
+  resources :transactions,                only: [:index, :show] do
+    match :in_onetime, via: [:get, :post], on: :member
+    match :in_cash,    via: [:get, :post], on: :member
+    match :in_bank,    via: [:get, :post], on: :member
+  end 
 end

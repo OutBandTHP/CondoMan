@@ -29,8 +29,8 @@ module ApplicationHelper
       if /at_(.+)_level\?/ !~ calling
         super
       else
-        return false if !level                        # ar_role?
-        return true if (level == Role.sysadmin)
+        return false if !level                        # at_role?
+        return true if (level == Role.Sysadmin)
         if project_set?
           return @current_user.roles.find_by(project_id: @project.id).authority >= Role.level.fetch(:"#{$1.capitalize}")
         else
@@ -53,6 +53,14 @@ module ApplicationHelper
       @project = Project.find(session[:project_id])
     end
     !session[:project_id].nil?
+  end
+    
+  def year_set?
+    if project_set?
+      return @year = Year.find(session[:year_id])
+    else
+      false
+    end
   end
 
   def create_user_role(project, user, level, unit=nil)

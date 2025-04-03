@@ -8,9 +8,9 @@ class UsersController < ApplicationController
   def index
     if project_set? && !at_admin_level?
       @project = Project.find(session[:project_id])
-      @users = User.where(id: Role.where(project_id: @project.id).select(:user_id)).paginate(page: params[:page], per_page: 10)
+      @users = User.select(:user_id)                        #.paginate(page: params[:page], per_page: 10)
     else
-      @users = User.where(activated: true).paginate(page: params[:page], per_page: 10)
+      @users = User.all                                      #.paginate(page: params[:page], per_page: 10)
     end
   end
   
@@ -27,8 +27,8 @@ class UsersController < ApplicationController
   end
   
   def new
-    if logged_in? && is_tenant?
-      flash[:warning] = "אינך מוסמך לבצע פעולה זו"
+    if logged_in? && !at_admin_level?
+      flash[:warning] = "אינך מוסמך לבצע פעולה זו log:#{logged_in?} aut:#{is_Tenant?}"
       redirect_to(root_url)
     else
       @user = User.new
@@ -56,6 +56,9 @@ class UsersController < ApplicationController
       @role = Role.find_by(user_id: @user.id)
     else
       @project = Project.find(session[:project_id])
+      if @project.nil? 
+        @project =  @user.roles.first.project_id
+      end
       @role = @project.roles.find_by(user_id: @user.id)
     end
   end
@@ -63,6 +66,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find params[:id]
     if @user.update(user_params)
+#      @user.send_activation_email if !@user.activated 
       flash[:success] = "משתמש '#{@user.name}' עודכן בהצלחה"
       redirect_to root_url
     else
@@ -85,19 +89,10 @@ class UsersController < ApplicationController
       params.require(:role).permit(:project, :unit, :level)
     end   
     
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "נא להכנס למערכת"
-        redirect_to login_url
-      end
-    end
-    
     def correct_user
       @user = User.find(params[:id])
       if current_user?(@user) || current_user.manages?(current_user_role(@user), @project)
       else
-        puts "----> FLASH from correct_user"
         flash[:warning] = "אינך מוסמך לבצע פעולה זו"
         redirect_to(root_url)
       end
