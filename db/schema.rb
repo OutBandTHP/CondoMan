@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_04_03_092356) do
+ActiveRecord::Schema[7.2].define(version: 2025_04_03_124254) do
   create_table "books", force: :cascade do |t|
     t.string "name"
     t.string "kind"
@@ -115,6 +115,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_03_092356) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.decimal "area"
+    t.string "payer"
     t.index ["project_id"], name: "index_units_on_project_id"
   end
 
