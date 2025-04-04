@@ -1,5 +1,4 @@
 class NotificationsController < ApplicationController
-  before_action :logged_in_user
   
   def index
     @projects = Project.all
@@ -29,7 +28,7 @@ class NotificationsController < ApplicationController
   def create
     @notification = Notification.new(notification_params)
     if @notification.save
-      redirect_to root_url
+      redirect_back_or root_path
     else
       render 'new'
     end

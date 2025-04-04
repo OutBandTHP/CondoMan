@@ -1,5 +1,4 @@
 class UnitsController < ApplicationController
-  before_action :logged_in_user
     
   def index
     @project = Project.find(session[:project_id])
@@ -28,6 +27,6 @@ class UnitsController < ApplicationController
 
   private
     def unit_params
-      params.require(:unit).permit(:building, :floor, :area, :since)
+      params.require(:unit).permit(:building, :floor, :area, :since, :payer)
     end
 end

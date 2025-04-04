@@ -1,9 +1,8 @@
 class UsersController < ApplicationController
   include ApplicationHelper
-  
-  before_action :logged_in_user, only: [:edit, :destroy, :index, :show, :update]
-  before_action :correct_user,   only: [:edit, :show, :update]
-  before_action :admin_user,     only: [:destroy]
+#  skip_before_action :logged_in_user, only[:new, :create]
+  before_action      :correct_user,   only: [:edit, :show, :update]
+  before_action      :admin_user,     only: [:destroy]
   
   def index
     if project_set? && !at_admin_level?

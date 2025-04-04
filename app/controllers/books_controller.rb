@@ -1,6 +1,4 @@
 class BooksController < ApplicationController
-  before_action :logged_in_user
-  before_action :set_project
 
   def index
     @books = Book.where(project_id: @project.id)

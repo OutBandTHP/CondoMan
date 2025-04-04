@@ -1,6 +1,5 @@
 class ProjectsController < ApplicationController
   include ApplicationHelper
-  before_action :logged_in_user
   
   Default_Password = "123456"
   

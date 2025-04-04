@@ -4,7 +4,7 @@ module SessionsHelper
     session[:user_id] = user.id
     @current_user = user
     if p_id = session[:project_id]
-      @project = Project.find_by[id: p_id]
+      @project = Project.find(p_id)
     elsif user.roles.first.project
       @project = user.roles.first.project
     else
