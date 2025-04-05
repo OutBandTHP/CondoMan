@@ -28,7 +28,9 @@ class ProjectsController < ApplicationController
                                password: Default_Password, password_confirmation: Default_Password)
           @n_role = Role.create(authority: Role.Owner, project_id: @project.id, unit_id: @n_unit.id, user_id: @n_user.id, since: @project.since)
         end
-        set_project(@project) 
+        set_project(@project)
+        Year.create(project_id: @project.id, finyear:  Date.today.year, ppm: 1)
+        message = message + "; נוצרה גם שנה - נא לוודא פרטים"
         flash[:success] = "'#{@project.name}' נוצר בהצלחה" + message
         redirect_to root_path
       else

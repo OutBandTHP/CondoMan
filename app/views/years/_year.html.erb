@@ -1,0 +1,5 @@
+<tr id="שנה-<%= year.id %>">
+  <td><%= link_to year.finyear, edit_year_path(year) %></td>
+  <td><%= year.ppm %></td>
+  <td><%= year.closed ? "שנת תקציב סגורה" : "שנת תקציב פתוחה" %></td>
+</tr>

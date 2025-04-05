@@ -1,0 +1,13 @@
+<% provide(:title, 'Year') %>
+
+<h2>
+  שנה <%= "#{@year.finyear}" %>
+</h2>
+
+<div class='row'>
+  <div class='col-md-6 col-md-offset-3'>
+    <%= form_with(model: @year, local: true) do |f| %>
+      <%= render 'form' %>
+    <% end %>
+  </div>
+</div>

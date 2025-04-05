@@ -1,0 +1,14 @@
+<%= form_with(model: @year, local: true) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+    
+  <%= f.label 'שנת תקציב'  %>
+  <%= f.number_field :finyear, class: 'form-control' %>
+    
+  <%= f.label 'עלות למ"ר'  %>
+  <%= f.text_field :ppm, class: 'form-control' %>
+  <strong><%= @year.closed ? "שנת תקציב סגורה" : "שנת תקציב פעילה" %></strong>
+  <br>   
+  <br> 
+
+  <%= f.submit 'בצע שינויים', class: 'btn btn-primary' %>
+<% end %>
