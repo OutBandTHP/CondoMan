@@ -1,4 +1,5 @@
 class TransTypesController < ApplicationController
+  skip_before_action :set_current_project
   
   def index
     @trans_types = TransType.all

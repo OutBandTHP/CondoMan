@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   include ApplicationHelper
-#  skip_before_action :logged_in_user, only[:new, :create]
+  skip_before_action :logged_in_user
+  skip_before_action :set_current_project
+
+  before_action      :logged_in_user, only: [:index, :show, :edit, :update, :destroy]
   before_action      :correct_user,   only: [:edit, :show, :update]
   before_action      :admin_user,     only: [:destroy]
   

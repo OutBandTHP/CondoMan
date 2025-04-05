@@ -1,0 +1,15 @@
+<% provide(:title, 'ספקים') %>
+
+<h2>
+  <%= "ספק #{@supplier.name} של פרוייקט #{@project.name}" %>
+</h2>
+
+<div class='row'>
+  <div class='col-md-6 col-md-offset-3'>
+     שם הספק: <%= @supplier.name %><br>
+     איש קשר:  <%= @supplier.contact %>
+     מייל:     <%= @supplier.email %>
+     טלפון:    <%= @supplier.phone %>
+     סעיף חיוב: <%= Book.find(@supplier.book_id).name if @supplier.book_id %>
+  </div>
+</div>  

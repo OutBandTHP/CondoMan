@@ -1,4 +1,5 @@
 class SelectProjectController < ApplicationController
+  skip_before_action :set_current_project
 
   def edit
     session[:project_id] = params[:id]

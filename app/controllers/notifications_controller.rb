@@ -1,4 +1,5 @@
 class NotificationsController < ApplicationController
+  skip_before_action :set_current_project
   
   def index
     @projects = Project.all

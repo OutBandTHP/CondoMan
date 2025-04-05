@@ -1,5 +1,4 @@
 class DeployBooksController < ApplicationController
-  before_action :set_project
 
   def index
     @deploy_books = DeployBook.where(project_id: @project.id)
@@ -50,9 +49,5 @@ class DeployBooksController < ApplicationController
 
     def deploy_params
       params.require(:deploy_book).permit(:project_id, :trans_type_id, :book_neg_id, :book_pos_id)
-    end
-    
-    def set_project
-      @project = Project.find(session[:project_id])
     end
 end

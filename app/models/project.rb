@@ -8,6 +8,7 @@ class Project < ApplicationRecord
   has_many :notifications  
   has_many :roles
   has_many :users,         through: :roles
+  has_many :suppliers
   
   validates :name,         presence: true, length: { maximum: 50 }, 
                            uniqueness: true

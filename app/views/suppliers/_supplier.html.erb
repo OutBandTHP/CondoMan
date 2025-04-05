@@ -1,0 +1,7 @@
+<tr id="ספק-<%= supplier.id %>">
+  <td><%= link_to supplier.name, edit_supplier_path(supplier) %></td>
+  <td><%= supplier.contact %></td>
+  <td><%= supplier.email %></td>
+  <td><%= supplier.phone %></td>
+  <td><%= Book.find(supplier.book_id).name if supplier.book_id %></td>
+</tr>

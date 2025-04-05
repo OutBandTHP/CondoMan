@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   include ApplicationHelper
+  skip_before_action :set_current_project
   
   Default_Password = "123456"
   

@@ -1,7 +1,6 @@
 class BuildingsController < ApplicationController
    
   def index
-    @project = Project.find(session[:project_id])
     @buildings = @project.buildings
     store_location
   end

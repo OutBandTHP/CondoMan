@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_04_03_124254) do
+ActiveRecord::Schema[7.2].define(version: 2025_04_04_094618) do
   create_table "books", force: :cascade do |t|
     t.string "name"
     t.string "kind"
@@ -99,6 +99,20 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_03_124254) do
     t.index ["user_id"], name: "index_roles_on_user_id"
   end
 
+  create_table "suppliers", force: :cascade do |t|
+    t.integer "project_id", null: false
+    t.string "name"
+    t.string "contact"
+    t.string "email"
+    t.string "phone"
+    t.integer "book_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index "\"project\", \"name\"", name: "index_suppliers_on_project_and_name"
+    t.index ["book_id"], name: "index_suppliers_on_book_id"
+    t.index ["project_id"], name: "index_suppliers_on_project_id"
+  end
+
   create_table "trans_types", force: :cascade do |t|
     t.integer "code", null: false
     t.string "name", null: false
@@ -155,6 +169,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_03_124254) do
   add_foreign_key "notifications", "projects"
   add_foreign_key "roles", "projects"
   add_foreign_key "roles", "users"
+  add_foreign_key "suppliers", "books"
+  add_foreign_key "suppliers", "projects"
   add_foreign_key "units", "projects"
   add_foreign_key "years", "projects"
 end

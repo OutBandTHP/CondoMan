@@ -5,12 +5,24 @@
   </div>
   <small>
     <b>גירסה:</b>  2.0.0<br>
-    <% if logged_in?   %>
-      <b>משתמש:</b>    <%= current_user.email %><br>
+    <% if logged_in? %>
+      <b>משתמש:</b>   <%= current_user.email %><br>
     <% end %>
     <% if project_set? %>
-      <b>פרוייקט:</b> <%= @project.name %><br>
+      <b>פרוייקט:</b>   <%= @project.name %><br>
     <% end %>
+    <% if year_set? %>
+       <% if @year.closed %>
+         <b>שנת תקציב:</b> <%= @year.finyear.to_s + " סגורה " %>
+       <% else %>
+         <b>שנת תקציב:</b> <%= @year.finyear %>
+       <% end %>
+     <% end %>
+    <% if project_set? %>
+      <br>
+      <b>חודש פעיל:</b>   <%= @project.current_month.to_s[0..6] %><br>
+    <% end %>
+    <br>
     <br>
     כל הזכויות שמורות Copyright (c) MHT Ltd  
   </small>

@@ -1,7 +1,6 @@
 class UnitsController < ApplicationController
     
   def index
-    @project = Project.find(session[:project_id])
     @units = @project.units
     @roles = @project.roles
     store_location

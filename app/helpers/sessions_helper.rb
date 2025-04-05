@@ -76,5 +76,15 @@ module SessionsHelper
     session[:project_id] = project.id
     @project = project
   end
+
+  def set_current_project
+    if session[:project_id] 
+      @project = Project.find(session[:project_id])
+    else
+      store_location
+      flash[:danger] = "נא לבחור פרוייקט"
+      redirect_to root_path
+    end
+  end
   
 end

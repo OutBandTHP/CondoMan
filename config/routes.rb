@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources         :trans_types,         only: [:index,         :edit, :update, :new, :create]
   resources         :books,               only: [:index,         :edit, :update, :new, :create]
   resources         :deploy_books,        only: [:index,         :edit, :update, :new, :create]
+  resources         :suppliers,           only: [:index, :show, :create, :edit, :update, :new]
   
   resources :transactions,                only: [:index, :show] do
     match :in_onetime, via: [:get, :post], on: :member

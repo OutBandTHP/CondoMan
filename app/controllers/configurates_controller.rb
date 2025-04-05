@@ -1,8 +1,6 @@
 class ConfiguratesController < ApplicationController
   include ApplicationHelper
 
-  before_action :project_set?
-
   def edit
     @configurate = Project.find params[:id]
   end
