@@ -20,10 +20,11 @@ Rails.application.routes.draw do
   resources         :books,               only: [:index,         :edit, :update, :new, :create]
   resources         :deploy_books,        only: [:index,         :edit, :update, :new, :create]
   resources         :suppliers,           only: [:index, :show, :create, :edit, :update, :new]
+  resources         :transactions,        only: [:index, :show]
   
-  resources :transactions,                only: [:index, :show] do
-    match :in_onetime, via: [:get, :post], on: :member
-    match :in_cash,    via: [:get, :post], on: :member
-    match :in_bank,    via: [:get, :post], on: :member
-  end 
+#  resources :transactions,                only: [:index, :show] do
+#    match :in_onetime, via: [:get, :post], on: :member
+#    match :in_cash,    via: [:get, :post], on: :member
+#    match :in_bank,    via: [:get, :post], on: :member
+#  end 
 end

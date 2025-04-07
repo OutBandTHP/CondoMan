@@ -9,6 +9,7 @@ class Project < ApplicationRecord
   has_many :roles
   has_many :users,         through: :roles
   has_many :suppliers
+  has_many :transactions
   
   validates :name,         presence: true, length: { maximum: 50 }, 
                            uniqueness: true

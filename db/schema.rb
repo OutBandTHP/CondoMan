@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_04_04_094618) do
+ActiveRecord::Schema[7.2].define(version: 2025_04_06_113406) do
   create_table "books", force: :cascade do |t|
     t.string "name"
     t.string "kind"
@@ -120,6 +120,34 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_04_094618) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "transactions", force: :cascade do |t|
+    t.integer "project_id", null: false
+    t.integer "finyear", null: false
+    t.datetime "trdate", null: false
+    t.boolean "trclosed"
+    t.integer "trans_types_id", null: false
+    t.integer "book_id", null: false
+    t.integer "supplier_id"
+    t.integer "unit_id"
+    t.text "description", null: false
+    t.string "refin"
+    t.string "refex"
+    t.text "remarks"
+    t.decimal "sum", null: false
+    t.integer "transactions_id"
+    t.integer "link_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_transactions_on_book_id"
+    t.index ["link_id"], name: "index_transactions_on_link_id"
+    t.index ["project_id", "finyear", "trdate", "id"], name: "index_transactions_on_project_id_and_finyear_and_trdate_and_id", unique: true
+    t.index ["project_id"], name: "index_transactions_on_project_id"
+    t.index ["supplier_id"], name: "index_transactions_on_supplier_id"
+    t.index ["trans_types_id"], name: "index_transactions_on_trans_types_id"
+    t.index ["transactions_id"], name: "index_transactions_on_transactions_id"
+    t.index ["unit_id"], name: "index_transactions_on_unit_id"
+  end
+
   create_table "units", force: :cascade do |t|
     t.integer "number"
     t.integer "building"
@@ -171,6 +199,13 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_04_094618) do
   add_foreign_key "roles", "users"
   add_foreign_key "suppliers", "books"
   add_foreign_key "suppliers", "projects"
+  add_foreign_key "transactions", "books"
+  add_foreign_key "transactions", "projects"
+  add_foreign_key "transactions", "suppliers"
+  add_foreign_key "transactions", "trans_types", column: "trans_types_id"
+  add_foreign_key "transactions", "transactions", column: "link_id"
+  add_foreign_key "transactions", "transactions", column: "transactions_id"
+  add_foreign_key "transactions", "units"
   add_foreign_key "units", "projects"
   add_foreign_key "years", "projects"
 end

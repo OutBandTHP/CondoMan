@@ -1,6 +1,7 @@
 class Unit < ApplicationRecord
   belongs_to :project
   has_many :roles
+  has_many :transactions
   
   validates :number, presence: true
   validates :since,  presence: true
