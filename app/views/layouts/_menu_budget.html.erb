@@ -25,7 +25,7 @@
         <li><%= link_to 'דוח מזומנים שטרם הופקדו', '#'  %></li>
         <% if at_admin_level? %>
           <li class='divider'></li>
-          <li><%= link_to 'בצע מהלך סוף חודש',   '#' %></li>
+          <li><%= link_to 'בצע מהלך סוף חודש',   transactions_eom_verify_path %></li>
         <% end %>
       </ul>
     </li>

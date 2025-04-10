@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   skip_before_action :logged_in_user
-  skip_before_action :set_current_project
+#  skip_before_action :set_current_project
   
   def new
   end

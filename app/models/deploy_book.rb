@@ -11,7 +11,7 @@ class DeployBook < ApplicationRecord
 
   # Support query of books to be deployed
   def DeployBook.get_deployment(pr_id, tr_id)
-    TransType.find_by(code: tr_id).deploy_book.where(project_id: pr_id).pluck(:trans_type_id, :book_neg_id, 0) +
-    TransType.find_by(code: tr_id).deploy_book.where(project_id: pr_id).pluck(:trans_type_id, 0, :book_pos_id)
+    TransType.find_by(code: tr_id).deploy_books.where(project_id: pr_id).pluck(:book_neg_id, 0) +
+    TransType.find_by(code: tr_id).deploy_books.where(project_id: pr_id).pluck(0, :book_pos_id)
   end
 end

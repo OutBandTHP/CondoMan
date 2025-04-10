@@ -12,6 +12,9 @@
       <%= f.label :total_area, 'שטח כולל' %>
       <%= f.number_field :total_area, step: '0.1', class: 'form-control' %>
     
+      <%= f.label :refin, 'שלנו הבא' %>
+      <%= f.text_field :refin, class: 'form-control' %>
+    
       <%= f.label :gl_tenants, 'ספר GL - דיירים' %>
       <%= f.number_field :gl_tenants, class: 'form-control' %>
     
@@ -31,22 +34,22 @@
       <%= f.text_field :tx_monthly, class: 'form-control' %>
     
       <%= f.label :tx_expense, 'תנועות הוצאה' %>
-      <%= f.text_field :tx_monthly, class: 'form-control' %>
+      <%= f.text_field :tx_expense, class: 'form-control' %>
     
       <%= f.label :tx_income, 'תנועות הכנסה' %>
-      <%= f.text_field :tx_monthly, class: 'form-control' %>
+      <%= f.text_field :tx_income, class: 'form-control' %>
     
       <%= f.label :tx_support, 'תנועות עזר' %>
-      <%= f.text_field :tx_monthly, class: 'form-control' %>
+      <%= f.text_field :tx_support, class: 'form-control' %>
     
       <%= f.label :gr_cash_flow, 'קבוצת ספרים לצפי תזרים מזומנים' %>
-      <%= f.text_field :tx_monthly, class: 'form-control' %>
+      <%= f.text_field :gr_cash_flow, class: 'form-control' %>
     
       <%= f.label :gr_pos_side, 'קבוצות ספרים בצד זכות' %>
       <%= f.text_field :gr_pos_side, class: 'form-control' %>
     
       <%= f.label :gr_neg_side, 'קבוצות ספרים בצד חובה' %>
-      <%= f.text_field :tx_monthly, class: 'form-control' %>
+      <%= f.text_field :gr_neg_side, class: 'form-control' %>
     
       <%= f.label :gr_open_balance, 'קבוצות ספרים ליתרות פתיחה' %>
       <%= f.text_field :gr_open_balance, class: 'form-control' %>

@@ -1,0 +1,14 @@
+<% provide(:title, 'EOM') %>
+
+<div class='row right'>
+  <div class='col-md-16'>
+    <h2>
+      בצע סוף/תחילת חודש בפרוייקט <%= "#{@project.name}" %>
+    </h2>
+    <%= form_with(url: transactions_eom_verify_path, scope: :session) do |f| %>
+        שנה: <%= @month.year %><br>
+        חודש: <%= @month.month %><br>
+      <%= f.submit 'בצע', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>  

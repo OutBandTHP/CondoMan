@@ -1,0 +1,24 @@
+<tr id="תנועה-<%= transaction.id %>">
+  <% datum = transaction.trdate.year.to_s + "/" + sprintf("%02d", transaction.trdate.month.to_s) + "/" + sprintf("%02d", transaction.trdate.day.to_s)  %>
+  <td><%= link_to "#{datum}", transaction_path(transaction.id) %></td>
+  <td><% if transaction.trclosed %>
+    <%= "סגורה"  %>
+  <% else %>
+    <%= " " %>
+  <% end %></td>
+  <td><%= TransType.find(transaction.trans_type_id).name %></td>
+  <td><%= transaction.description %></td>
+  <td><% if !transaction.supplier_id.nil? %>
+    <%= Supplier.find(transaction.supplier_id).name  %>
+  <% else %>
+    <%= " " %>
+  <% end %></td>
+  <td><% if !transaction.unit_id.nil? %>
+    <%= transaction.unit_id.to_s + " " + Unit.find(transaction.unit_id).payer  %>
+  <% else %>
+    <%= " " %>
+  <% end %></td>
+  <td><%= transaction.refin %></td>
+  <td><%= transaction.refex %></td>
+  <td><%= transaction.sum %></td>
+</tr>

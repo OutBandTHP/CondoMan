@@ -2,6 +2,7 @@ class Supplier < ApplicationRecord
   belongs_to :project
 
   has_many :transactions
+  has_many :ledgers
 
   def Supplier.valid_email_regex
       /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

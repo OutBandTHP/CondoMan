@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_04_06_113406) do
+ActiveRecord::Schema[7.2].define(version: 2025_04_08_111830) do
   create_table "books", force: :cascade do |t|
     t.string "name"
     t.string "kind"
@@ -46,6 +46,32 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_06_113406) do
     t.index ["book_pos_id"], name: "index_deploy_books_on_book_pos_id"
     t.index ["project_id"], name: "index_deploy_books_on_project_id"
     t.index ["trans_type_id"], name: "index_deploy_books_on_trans_type_id"
+  end
+
+  create_table "ledgers", force: :cascade do |t|
+    t.integer "project_id", null: false
+    t.integer "finyear", null: false
+    t.date "trdate", null: false
+    t.integer "trans_type_id", null: false
+    t.integer "transaction_id", null: false
+    t.integer "book_id", null: false
+    t.integer "supplier_id"
+    t.integer "unit_id"
+    t.text "description"
+    t.string "refin"
+    t.string "refex"
+    t.text "remarks"
+    t.decimal "debit"
+    t.decimal "credit"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index "\"project_id\", \"finyear\", \"trdate\", \"transaction\", \"id\"", name: "idx_on_project_id_finyear_trdate_transaction_id_2f7ef141ee", unique: true
+    t.index ["book_id"], name: "index_ledgers_on_book_id"
+    t.index ["project_id"], name: "index_ledgers_on_project_id"
+    t.index ["supplier_id"], name: "index_ledgers_on_supplier_id"
+    t.index ["trans_type_id"], name: "index_ledgers_on_trans_type_id"
+    t.index ["transaction_id"], name: "index_ledgers_on_transaction_id"
+    t.index ["unit_id"], name: "index_ledgers_on_unit_id"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -85,6 +111,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_06_113406) do
     t.string "gr_open_balance"
     t.string "gr_for_balance"
     t.string "gr_for_flow"
+    t.string "refin"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -125,7 +152,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_06_113406) do
     t.integer "finyear", null: false
     t.datetime "trdate", null: false
     t.boolean "trclosed"
-    t.integer "trans_types_id", null: false
+    t.integer "trans_type_id", null: false
     t.integer "book_id", null: false
     t.integer "supplier_id"
     t.integer "unit_id"
@@ -194,6 +221,12 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_06_113406) do
   add_foreign_key "deploy_books", "books", column: "book_pos_id"
   add_foreign_key "deploy_books", "projects"
   add_foreign_key "deploy_books", "trans_types"
+  add_foreign_key "ledgers", "books"
+  add_foreign_key "ledgers", "projects"
+  add_foreign_key "ledgers", "suppliers"
+  add_foreign_key "ledgers", "trans_types"
+  add_foreign_key "ledgers", "transactions"
+  add_foreign_key "ledgers", "units"
   add_foreign_key "notifications", "projects"
   add_foreign_key "roles", "projects"
   add_foreign_key "roles", "users"
@@ -202,7 +235,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_06_113406) do
   add_foreign_key "transactions", "books"
   add_foreign_key "transactions", "projects"
   add_foreign_key "transactions", "suppliers"
-  add_foreign_key "transactions", "trans_types", column: "trans_types_id"
+  add_foreign_key "transactions", "trans_types", column: "trans_type_id"
   add_foreign_key "transactions", "transactions", column: "link_id"
   add_foreign_key "transactions", "transactions", column: "transactions_id"
   add_foreign_key "transactions", "units"

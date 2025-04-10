@@ -75,11 +75,23 @@ module SessionsHelper
   def set_project(project)
     session[:project_id] = project.id
     @project = project
+    if y_id = session[:year_id]
+      @year = Year.find(session[:year_id])
+    else
+      @year = nil
+    end
   end
 
   def set_current_project
     if session[:project_id] 
       @project = Project.find(session[:project_id])
+      if session[:year_id]
+        @year = Year.find(session[:year_id])
+      else
+        store_location
+        flash[:danger] = "נא לבחור שנת תקציב"
+        redirect_to root_path
+      end
     else
       store_location
       flash[:danger] = "נא לבחור פרוייקט"

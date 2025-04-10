@@ -1,6 +1,7 @@
 class Book < ApplicationRecord
   belongs_to :project
   has_many   :suppliers
+  has_many   :ledgers  
   has_many   :deploy_book, as: :book_neg
 #  has_many   :deploy_book, as: :book_pos        should have worked?  
   has_many   :children, class_name: "Group", foreign_key: "group_id"

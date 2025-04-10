@@ -57,7 +57,11 @@ module ApplicationHelper
     
   def year_set?
     if project_set?
-      return @year = Year.find(session[:year_id])
+      if session[:year_id] 
+        return @year = Year.find(session[:year_id])
+      else
+        return @year = @project.years.last
+      end
     else
       false
     end

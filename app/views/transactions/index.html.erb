@@ -1,2 +1,27 @@
-<h1>Transactions#index</h1>
-<p>Find me in app/views/transactions/index.html.erb</p>
+<% provide(:title, 'Transactions') %>
+<div class="center-block">
+  <h1>תנועות בפרוייקט <%= "#{@project.name} לשנת התקציב #{@year.finyear}" %></h1>
+ 
+  <div class="col-md">
+    <div id="table-wrapper">
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr class="heading">
+            <th style="text-align:right">תאריך</th>
+            <th style="text-align:right">סטטוס</th>
+            <th style="text-align:right">סוג פעולה</th>
+            <th style="text-align:right">תאור</th>
+            <th style="text-align:right">ספק</th>
+            <th style="text-align:right">דירה</th>
+            <th style="text-align:right">שלנו</th>
+            <th style="text-align:right">שלהם</th>
+            <th style="text-align:right">סכום</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render @transactions %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+ </div>

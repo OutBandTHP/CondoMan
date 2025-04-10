@@ -1,2 +1,54 @@
-<h1>Transactions#show</h1>
-<p>Find me in app/views/transactions/show.html.erb</p>
+<% datum = @transaction.trdate.year.to_s + "/" + sprintf("%02d", @transaction.trdate.month.to_s) + "/" + sprintf("%02d", @transaction.trdate.day.to_s)  %>
+
+<h1>תנועה מס. <%= @transaction.id %></h1>
+<div class="container">
+  <div class='row'>
+    <div class='col right'>
+      <h2>בפרוייקט <%= @project.name %></h2>
+    </div>
+    <div class='col left'>
+      <h2>שנת תקציב: <%= @year.finyear %></h2>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col'>
+      תאריך התנועה: <%= "#{datum}" %>
+      <% if @transaction.trclosed %>
+        (התנועה סגורה) 
+      <% end %>
+    </div>
+    <div class='col'></div>
+  </div>
+  <div class='row'>
+    תנועת: <%= TransType.find(@transaction.trans_type_id).name %><br>
+  </div>
+  <div class='row'>
+    <br>תאור:  <%= @transaction.description %><br>
+  </div>
+  <div class='row'>
+    הערות: <%= @transaction.remarks %><br><br>
+  </div>
+  <div class='row'>
+    <% if !@transaction.supplier_id.nil? %>
+    ספק:  <%= Supplier.find(@transaction.supplier_id).name  %><br>
+    <% else %>
+       <%= " " %>
+    <% end %>
+    <% if !@transaction.unit_id.nil? %>
+    דירה:  <%= @transaction.unit_id.to_s + " " + Unit.find(@transaction.unit_id).payer  %><br>
+    <% else %>
+      <%= " " %>
+    <% end %>
+  </div>
+  <div class='row'>
+    <div class='col'>
+      שלנו:  <%= @transaction.refin %>
+    </div>
+    <div class='col'>
+      שלהם: <%= @transaction.refex %><br>
+    </div>
+  </div>
+  <div class='row'>
+    סכום  :  <%= @transaction.sum %>
+  </div>
+</div>  
