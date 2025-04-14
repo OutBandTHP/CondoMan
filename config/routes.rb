@@ -20,9 +20,11 @@ Rails.application.routes.draw do
   resources         :books,               only: [:index,         :edit, :update, :new, :create]
   resources         :deploy_books,        only: [:index,         :edit, :update, :new, :create]
   resources         :suppliers,           only: [:index, :show, :create, :edit, :update, :new]
-  resources         :transactions,        only: [:index, :show]
+
+  resources         :transactions,        only: [:index, :show,  :new,  :create]
   get               '/transactions/eom/verify',  to: 'transactions#eomverify'
   post              '/transactions/eom/verify',  to: 'transactions#eomexec'
+#  post              '/transactions/create', to: 'transactions#create'
   
 #  resources :transactions,                only: [:index, :show] do
 #    match :in_onetime, via: [:get, :post], on: :member

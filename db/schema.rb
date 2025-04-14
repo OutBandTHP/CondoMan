@@ -151,13 +151,12 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_08_111830) do
     t.integer "project_id", null: false
     t.integer "finyear", null: false
     t.datetime "trdate", null: false
-    t.boolean "trclosed"
+    t.boolean "trclosed", default: false, null: false
     t.integer "trans_type_id", null: false
-    t.integer "book_id", null: false
     t.integer "supplier_id"
     t.integer "unit_id"
     t.text "description", null: false
-    t.string "refin"
+    t.string "refin", null: false
     t.string "refex"
     t.text "remarks"
     t.decimal "sum", null: false
@@ -165,12 +164,10 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_08_111830) do
     t.integer "link_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["book_id"], name: "index_transactions_on_book_id"
     t.index ["link_id"], name: "index_transactions_on_link_id"
-    t.index ["project_id", "finyear", "trdate", "id"], name: "index_transactions_on_project_id_and_finyear_and_trdate_and_id", unique: true
     t.index ["project_id"], name: "index_transactions_on_project_id"
     t.index ["supplier_id"], name: "index_transactions_on_supplier_id"
-    t.index ["trans_types_id"], name: "index_transactions_on_trans_types_id"
+    t.index ["trans_type_id"], name: "index_transactions_on_trans_type_id"
     t.index ["transactions_id"], name: "index_transactions_on_transactions_id"
     t.index ["unit_id"], name: "index_transactions_on_unit_id"
   end
@@ -232,10 +229,9 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_08_111830) do
   add_foreign_key "roles", "users"
   add_foreign_key "suppliers", "books"
   add_foreign_key "suppliers", "projects"
-  add_foreign_key "transactions", "books"
   add_foreign_key "transactions", "projects"
   add_foreign_key "transactions", "suppliers"
-  add_foreign_key "transactions", "trans_types", column: "trans_type_id"
+  add_foreign_key "transactions", "trans_types"
   add_foreign_key "transactions", "transactions", column: "link_id"
   add_foreign_key "transactions", "transactions", column: "transactions_id"
   add_foreign_key "transactions", "units"

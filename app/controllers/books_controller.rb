@@ -6,7 +6,7 @@ class BooksController < ApplicationController
   end
 
   def edit
-    @groups = Book.where(project_id: @project.id)
+    @s = Book.where(project_id: @project.id)
     @book = Book.find(params[:id])
   end
 

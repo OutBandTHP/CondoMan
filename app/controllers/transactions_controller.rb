@@ -7,6 +7,51 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.find(params[:id])
   end
   
+  def new
+    tr = params[:format]
+    @transaction = Transaction.new
+    @units = @project.units
+    if tr.nil?
+      flash[:warning] = "אינך מוסמך לבצע פעולה זו"
+      redirect_to(root_url)
+    else
+      @refin = @year.finyear.to_s + "/" + @project.set_reference
+      @prevs = @project.transactions.where("finyear =  #{@year.finyear} AND trans_type_id < #{tr.gsub('tx','')} AND trclosed = false").all
+    end
+    render tr
+  end
+
+  def create
+    tr = params[:trans_type_id]
+    if tr.nil?
+      flash[:warning] = "אינך מוסמך לבצע פעולה זו"
+      redirect_to(root_url)
+      exit sub
+    end
+    prev = params[:transactions_id]
+    @transaction = Transaction.new(tx_params)
+    @transaction.project_id = @project.id
+    @transaction.trans_type_id = tr
+    if !prev.nil?
+      @transaction.finyear = Transaction.find(prev).finyear
+      @transaction.refin = Transaction.find(prev).refin
+      @transaction.transactions_id = Transaction.find(prev).id
+    else
+      @transaction.finyear = @year.finyear
+    end
+    debugger
+    if @transaction.save
+      flash[:success] = "רשום התנועה נוצר בהצלחה"
+      redirect_back_or root_path
+    else
+      @units = @project.units
+      @refin = @year.finyear.to_s + "/" + @project.set_reference
+      @prevs = @project.transactions.where(finyear: @year.finyear, trclosed: false)
+      render "tx" + sprintf("%02d", tr)
+    end
+    redirect_to(root_url)
+  end
+  
   def eomverify
     @month = @project.current_month
     render 'eom'
@@ -24,8 +69,7 @@ class TransactionsController < ApplicationController
       @project.units.each do |u| 
         rf = fin+@project.set_reference
         tot = @year.ppm * u.area
-        trid = Transaction.create!(project_id: prj, finyear: @year.finyear, trdate: dt, 
-                                   trans_type_id: trx, book_id: @project.get_value(:gl_tenants), 
+        trid = Transaction.create!(project_id: prj, finyear: @year.finyear, trdate: dt, trans_type_id: trx,  
                                    unit_id: u.id, description: desc, refin: rf, sum: tot)
         if trid.nil? 
           ok = false
@@ -55,4 +99,11 @@ class TransactionsController < ApplicationController
     end
     redirect_to root_path
   end
+
+  private
+
+    def tx_params
+      params.require(:transaction).permit(:project_id, :finyear, :trdate, :trclosed, :trans_type_id, 
+                     :supplier_id, :unit_id, :description, :refin, :refex, :remarks, :sum, :transactions_id)
+    end
 end

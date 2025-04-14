@@ -1,0 +1,35 @@
+<% provide(:title, 'זיכוי - העברה') %>
+<% provide(:button_text, 'שמור תנועה') %>
+
+<div class='row right'>
+  <div class='col-md-16'>
+    <h2>זיכוי - העברה</h2>
+    <%= form_with model: @transaction do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :trdate, 'תאריך' %>
+      <%= f.date_field :trdate, class: 'form-control' %>
+    
+      <%= f.label 'דירה' %>
+      <%= f.collection_select :unit_id, @units, :id, :payer, { include_blank: true } %>
+
+      <%= f.label 'תנועה קודמת' %>
+      <%= f.collection_select :transactions_id, @prevs.where(unit_id: 55), :id, :description, { include_blank: true } %>
+
+      <%= f.label :description, 'פרטי החיוב' %>
+      <%= f.text_area :description, rows: 2, cols: 60, class: 'form-control' %>
+    
+      <%= f.label :refex, 'שלהם' %>
+      <%= f.text_field :refex, class: 'form-control' %>
+    
+      <%= f.label :sum, 'סכום' %>
+      <%= f.number_field :sum, step: '0.01', class: 'form-control' %>
+
+      <%= f.label :remarks, 'הערות' %>
+      <%= f.text_area :remarks, rows: 1, cols: 60, class: 'form-control' %>
+       
+      <%= hidden_field_tag :trans_type_id, 3 %>
+      <%= hidden_field_tag :trclosed, true %>
+     
+      <%= f.submit yield(:button_text), class: 'btn btn-primary' %>
+    <% end %>
